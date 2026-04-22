@@ -1,0 +1,60 @@
+.registration {
+	position: relative;
+}
+
+.registration--welcome {}
+
+.welcome {
+	background-color: #7051EF;
+	color: #fff;
+
+	position: absolute;
+	top: 0;
+	width: 50%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 25px;
+
+	transition: all 0.3s ease 1s;
+}
+
+.welcome_right {
+	border-top-left-radius: 24.4%;
+	border-bottom-left-radius: 24.4%;
+	right: 0;
+}
+
+.welcome_left {
+	border-top-right-radius: 24.4%;
+	border-bottom-right-radius: 24.4%;
+	left: 0;
+}
+
+.welcome--content {}
+
+.welcome--title {
+	font-weight: 700;
+	font-size: 48px;
+	color: #fff;
+}
+
+.welcome--text {
+	font-weight: 700;
+	font-size: 24px;
+	color: #fff;
+}
+
+.welcome--box-button {}
+
+.welcome--button {
+	font-weight: 700;
+	font-size: 24px;
+	text-align: center;
+	color: #fff;
+	border: 3px solid #fff;
+	border-radius: 20px;
+	width: 243px;
+	height: 70px;
+}

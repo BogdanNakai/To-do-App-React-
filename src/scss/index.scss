@@ -1,0 +1,21 @@
+@import './null.scss';
+
+@import url("https://fonts.googleapis.com/css?family=Quicksand:regular,700&display=swap");
+
+
+body {
+	font-family: "Quicksand", sans-serif;
+	font-size: 24px;
+	font-weight: 700;
+	color: #181821;
+}
+
+[class*="--container"] {
+	max-width: 1200px;
+	padding: 0 15px;
+	margin: 0 auto;
+}
+
+.button {
+	
+}
