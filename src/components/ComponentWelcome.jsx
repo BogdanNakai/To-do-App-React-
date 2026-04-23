@@ -5,7 +5,7 @@ import '../scss/registration.scss'
 
 const ComponentWelcome = () => {
 
-	const [welcomePosition, setWelcomePosition] = useState('signup');
+	const [welcomePosition, setWelcomePosition] = useState('signin');
 	const isSignIn = welcomePosition === "signin"
 
 	return (

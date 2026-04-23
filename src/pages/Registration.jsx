@@ -4,15 +4,15 @@ import SingUp from "../components/SingUp";
 
 const Registration = () => {
 	return (
-		<section className="c">
+		<div className="registration">
 			<div className="registration--container">
 				<div className="registration--body">
-					<SingIn />
-					<ComponentWelcome />
 					<SingUp />
+					<ComponentWelcome />
+					<SingIn />
 				</div>
 			</div>
-		</section>
+		</div>
 	)
 };
 
