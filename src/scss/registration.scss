@@ -10,6 +10,7 @@
 
 	position: absolute;
 	top: 0;
+	left: 0;
 	width: 50%;
 	height: 100%;
 	display: flex;
@@ -17,22 +18,26 @@
 	justify-content: center;
 	padding: 25px;
 
-	transition: all 0.3s ease 1s;
+	transition: all 1.4s ease ;
 }
 
-.welcome_right {
+.welcome_signup {
 	border-top-left-radius: 24.4%;
 	border-bottom-left-radius: 24.4%;
-	right: 0;
+	transform: translate(100%);
 }
 
-.welcome_left {
+.welcome_signin {
 	border-top-right-radius: 24.4%;
 	border-bottom-right-radius: 24.4%;
-	left: 0;
+	transform: translate(0%);
 }
 
-.welcome--content {}
+.welcome--content {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
 
 .welcome--title {
 	font-weight: 700;
