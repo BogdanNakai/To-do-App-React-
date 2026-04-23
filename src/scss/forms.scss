@@ -1,0 +1,86 @@
+.form {}
+
+.form--title {
+	font-weight: 700;
+	font-size: 48px;
+	text-align: center;
+	color: #181821;
+}
+
+.form--signin {
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+}
+
+.form--info-input {}
+
+.form--box-input {
+
+	&:not(:last-child) {
+		padding-bottom: 25px;
+	}
+}
+
+.form--content-input {
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	padding-bottom: 25px;
+}
+
+.form--input {
+	flex: 1 1 100%;
+	background: #dce0e3;
+	border-radius: 10px;
+	height: 60px;
+	padding: 0 20px;
+}
+
+.form--input-icon {
+	position: absolute;
+	right: 15px;
+}
+
+.form--forgot-password {
+	font-weight: 700;
+	font-size: 20px;
+	color: #595959;
+}
+
+.form--box-button {}
+
+.form--button {
+	border-radius: 10px;
+	width: 100%;
+	height: 60px;
+	background-color: #7051ef;
+	color: #dce0e3;
+	margin-bottom: 20px;
+}
+
+.form--social-text {
+	font-weight: 700;
+	font-size: 20px;
+	color: #595959;
+	padding-bottom: 20px;
+}
+
+.form--social-list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 30px;
+}
+
+.form--social-item {}
+
+.form--social-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 12px;
+	border: 2px solid #595959;
+	border-radius: 5px;
+}

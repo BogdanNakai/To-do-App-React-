@@ -2,13 +2,24 @@
 	position: relative;
 }
 
-.registration--welcome {}
+.registration--form {
+	flex: 0 1 100px;
+}
+
+.registration--body {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	gap: 50px;
+}
 
 .welcome {
 	background-color: #7051EF;
 	color: #fff;
 
 	position: absolute;
+	z-index: 99;
 	top: 0;
 	left: 0;
 	width: 50%;
