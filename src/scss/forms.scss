@@ -85,3 +85,11 @@
 	border: 2px solid #595959;
 	border-radius: 5px;
 }
+
+.form--error-message {
+	position: absolute;
+	bottom: -17px;
+	left: 0;
+	font-size: 14.5px;
+	color: rgb(226, 16, 16);
+}
