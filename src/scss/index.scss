@@ -20,15 +20,12 @@ body {
 }
 
 .wrapper {
-	min-height: 100%;
+	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	overflow: clip;
+	justify-content: center;
 
-	// Притискаємо footer
-	>main {
-		flex: 1 1 auto;
-	}
 }
 
 .button {}
