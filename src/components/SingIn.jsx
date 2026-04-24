@@ -12,7 +12,7 @@ const SingIn = () => {
 				<h2 className="form--title">Login</h2>
 				<div className="form--info-input">
 					<InputForm type='text' name='user' id='user' icon={user} placeholder={'Username'} />
-					<InputForm type='password' name='password' id='password' icon={security} placeholder={'Password'} />
+					<InputForm type='password' name='passwordSingIn' id='passwordSingIn' icon={security} placeholder={'Password'} />
 				</div>
 				<div className="form--footer">
 					<ButtonForm textButton='Login' />

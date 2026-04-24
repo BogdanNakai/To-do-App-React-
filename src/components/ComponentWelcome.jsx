@@ -3,10 +3,10 @@ import '../scss/registration.scss'
 
 
 
-const ComponentWelcome = () => {
+const ComponentWelcome = ({ welcomePosition, setWelcomePosition, isSignIn }) => {
 
-	const [welcomePosition, setWelcomePosition] = useState('signin');
-	const isSignIn = welcomePosition === "signin"
+
+
 
 	return (
 		<div className={`registration--welcome welcome welcome_${welcomePosition}`}>

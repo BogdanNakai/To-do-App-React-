@@ -9,7 +9,7 @@ const InputForm = ({ type, name, id, icon, placeholder }) => {
 					<img src={icon} alt={icon} />
 				</div>
 			</div>
-			{type === 'password' && <a href="" className="form--forgot-password">Forgot Password!</a>}
+			{name === 'passwordSingIn' && <a href="" className="form--forgot-password">Forgot Password!</a>}
 		</div>
 	)
 };

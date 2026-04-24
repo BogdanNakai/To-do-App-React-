@@ -15,7 +15,7 @@ const SingUp = () => {
 					<div className="form--info-input">
 						<InputForm type='text' name='user' id='user' icon={user} placeholder={'Username'} />
 						<InputForm type='email' name='email' id='email' icon={email} placeholder={'Email'} />
-						<InputForm type='password' name='password' id='password' icon={security} placeholder={'Password'} />
+						<InputForm type='password' name='passwordSingUp' id='passwordSingUp' icon={security} placeholder={'Password'} />
 					</div>
 					<div className="form--footer">
 						<ButtonForm textButton='Registration' />
