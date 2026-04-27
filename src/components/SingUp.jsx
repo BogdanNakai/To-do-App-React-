@@ -13,10 +13,28 @@ const SingUp = () => {
 		control,
 		handleSubmit,
 		message,
+		setError,
 		formState: { errors },
 	} = useForm()
 
-	const onSubmit = (data) => console.log(data)
+	const onSubmit = (data) => {
+
+		const users = JSON.parse(localStorage.getItem('users')) || [];
+
+		const isEmailUsed = users.find(user => user.email === data.email);
+
+		if (isEmailUsed) {
+			setError('email', {
+				type: 'manual',
+				message: 'A user with this email address already exists'
+			})
+			return
+		}
+
+		users.push({ ...data, id: crypto.randomUUID() 	});
+
+		localStorage.setItem(`users`, JSON.stringify(users));
+	}
 
 	return (
 		<>
