@@ -4,6 +4,7 @@ import Loading from "../components/Loading";
 
 const Login = lazy(() => import("./Login"))
 const Registration = lazy(() => import("./Registration"))
+const ToDoList = lazy(() => import("./ToDoList"))
 
 const AppComponents = () => {
 	return (
@@ -12,6 +13,7 @@ const AppComponents = () => {
 				<Route path="/" element={<Registration to="/registration" replace />} />
 				<Route path="/registration" element={<Registration/>} /> 
 				<Route path="/login" element={<Login />} />
+				<Route path="/todolist" element={<ToDoList />} />
 			</Routes>
 		</Suspense>
 	)
