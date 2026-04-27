@@ -1,8 +1,19 @@
-import Registration from "./Registration";
+import { Route, Routes } from "react-router-dom";
+import { Suspense, lazy } from "react";
+import Loading from "../components/Loading";
+
+const Login = lazy(() => import("./Login"))
+const Registration = lazy(() => import("./Registration"))
 
 const AppComponents = () => {
 	return (
-		<Registration />
+		<Suspense fallback={<Loading />}>
+			<Routes>
+				<Route path="/" element={<Registration to="/registration" replace />} />
+				<Route path="/registration" element={<Registration/>} /> 
+				<Route path="/login" element={<Login />} />
+			</Routes>
+		</Suspense>
 	)
 };
 
