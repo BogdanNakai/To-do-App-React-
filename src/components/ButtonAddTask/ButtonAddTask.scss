@@ -1,0 +1,31 @@
+.todo--addTask {
+	position: fixed;
+	bottom: 23px;
+	right: 10%;
+}
+
+.todo--button-addTask {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+	background-color: #6c63ff;
+	box-shadow: 0 0 4px 0 #6c63ff;
+
+	&::after,
+	&::before {
+		content: "";
+		position: absolute;
+		width: 50%;
+		height: 3px;
+		background-color: #fff;
+		border-radius: 3px;
+	}
+
+	&::before {
+		transform: rotate(90deg);
+	}
+}

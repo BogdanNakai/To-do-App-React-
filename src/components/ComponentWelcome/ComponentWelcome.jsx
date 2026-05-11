@@ -1,14 +1,8 @@
-import { useState } from 'react';
-import '../scss/registration.scss'
 import { Link } from 'react-router-dom';
-
+import './ComponentWelcome.scss'
 
 
 const ComponentWelcome = ({ welcomePosition }) => {
-
-
-
-
 	return (
 		<div className={`registration--welcome welcome welcome_${welcomePosition}`}>
 			<div className="welcome--content">

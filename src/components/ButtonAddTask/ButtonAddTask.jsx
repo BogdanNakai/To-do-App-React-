@@ -1,3 +1,5 @@
+import './ButtonAddTask.scss'
+
 const ButtonAddTask = ({ setActivePopap, setNewTaskTitle }) => {
 	return (
 		<div className="todo--addTask">

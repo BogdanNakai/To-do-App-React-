@@ -1,7 +1,8 @@
 import { useState } from "react";
-import ComponentWelcome from "../components/ComponentWelcome";
-import SingIn from "../components/SingIn";
-import SingUp from "../components/SingUp";
+import ComponentWelcome from "../components/ComponentWelcome/ComponentWelcome";
+import '../scss/registration.scss'
+import SingIn from "../components/SingIn/SingIn";
+import SingUp from "../components/SingUp/SingUp";
 
 
 const Registration = () => {

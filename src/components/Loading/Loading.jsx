@@ -1,4 +1,5 @@
-import preview  from "../assets/preview.gif";
+import preview  from "../../assets/preview.gif";
+import './Loading.scss'
 
 const Loading = () => {
 	return (

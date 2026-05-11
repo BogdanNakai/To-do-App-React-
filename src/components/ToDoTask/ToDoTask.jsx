@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import edit from '../assets/icon_edit.svg'
-import remove from '../assets/icon_remove.svg'
+import './ToDoTask.scss'
+import edit from '../../assets/icon_edit.svg'
+import remove from '../../assets/icon_remove.svg'
 
 const ToDoTask = ({ task, filteredTasks, filteredByDone, toggleCheckBox, deleteTask, getEditControls }) => {
 	return (

@@ -1,11 +1,11 @@
 import '../scss/todo.scss'
-import ButtonThems from "../components/ButtonThems";
-import SearchTask from "../components/SearchTask";
-import SelectTypetask from "../components/SelectTypeTask";
-import ToDoTask from '../components/ToDoTask';
-import ButtonAddTask from '../components/ButtonAddTask';;
+import ButtonThems from "../components/ButtonThems/ButtonThems";
+import SearchTask from "../components/SearchTask/SearchTask";
+import SelectTypetask from "../components/SelectTypeTask/SelectTypeTask";
+import ToDoTask from '../components/ToDoTask/ToDoTask';
+import ButtonAddTask from '../components/ButtonAddTask/ButtonAddTask';;
 import { useEffect, useState } from 'react';
-import PopapAddTask from '../components/PopapAddTask';
+import PopapAddTask from '../components/PopapAddTask/PopapAddTask';
 
 const ToDoList = () => {
 	const [activePopap, setActivePopap] = useState('');

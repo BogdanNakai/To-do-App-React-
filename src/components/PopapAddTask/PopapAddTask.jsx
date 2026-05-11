@@ -1,8 +1,6 @@
-import { useState } from "react";
+import './PopapAddTask.scss'
 
-const PopapAddTask = ({ active, setActivePopap, newTaskTitle, setNewTaskTitle, addTask, rename}) => {
-
-
+const PopapAddTask = ({ active, setActivePopap, newTaskTitle, setNewTaskTitle, addTask, rename }) => {
 	return (
 		<div className={`todo--popapAddTask popapAddTask ${active}`}>
 			<h3 className="popapAddTask--title">New Note</h3>

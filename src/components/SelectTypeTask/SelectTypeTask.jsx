@@ -1,3 +1,5 @@
+import './SelectTypeTask.scss'
+
 const SelectTypeTask = ({setFilterIsDone}) => { 
 	return (
 		<>

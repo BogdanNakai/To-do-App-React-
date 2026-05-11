@@ -1,4 +1,5 @@
-import moon from "../assets/icon_moon.svg";
+import moon from "../../assets/icon_moon.svg";
+import './ButtonThems.scss'
 
 const ButtonThems = () => { 
 	return (

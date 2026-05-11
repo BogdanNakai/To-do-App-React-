@@ -1,11 +1,14 @@
-import ButtonForm from "./ButtonForm";
-import InputForm from "./InputForm";
-import Social from "./Social";
-import user from '../assets/icon_user.svg'
-import security from '../assets/icon_security.svg'
-import '../scss/forms.scss'
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+
+import InputForm from "../InputForm/InputForm";
+import Social from "../Social/Social";
+import ButtonForm from "../ButtonForm/ButtonForm";
+
+import './SingIn.scss'
+
+import user from '../../assets/icon_user.svg'
+import security from '../../assets/icon_security.svg'
 
 const SingIn = () => {
 
@@ -18,8 +21,6 @@ const SingIn = () => {
 		setError,
 		formState: { errors },
 	} = useForm()
-
-	/* 	console.log(errors); */
 
 	const onSubmit = (data) => {
 		const users = JSON.parse(localStorage.getItem('users')) || [];

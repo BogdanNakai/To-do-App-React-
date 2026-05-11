@@ -1,7 +1,8 @@
-import ComponentWelcome from "../components/ComponentWelcome";
-import SingIn from "../components/SingIn";
+import ComponentWelcome from "../components/ComponentWelcome/ComponentWelcome";
+import SingIn from "../components/SingIn/SingIn";
+import '../scss/registration.scss'
 
-const Login = () => { 
+const Login = () => {
 
 	const welcomePosition = "signup"
 

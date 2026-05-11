@@ -1,13 +1,15 @@
 import { Controller, useForm } from "react-hook-form";
-import ButtonForm from "./ButtonForm";
-import Social from "./Social";
-import user from '../assets/icon_user.svg'
-import security from '../assets/icon_security.svg'
-import email from '../assets/icon_email.svg'
-import '../scss/forms.scss'
-import InputForm from "./InputForm";
 import { useNavigate } from "react-router-dom";
 
+import ButtonForm from "../ButtonForm/ButtonForm";
+import Social from "../Social/Social";
+import InputForm from "../InputForm/InputForm";
+
+import './SingUp.scss'
+
+import user from '../../assets/icon_user.svg'
+import security from '../../assets/icon_security.svg'
+import email from '../../assets/icon_email.svg'
 
 const SingUp = () => {
 	const navigate = useNavigate()

@@ -1,4 +1,6 @@
-const ButtonForm = ({textButton}) => {
+import './ButtonForm.scss'
+
+const ButtonForm = ({ textButton }) => {
 	return (
 		<div className="form--box-button">
 			<button type="submit" className="form--button">

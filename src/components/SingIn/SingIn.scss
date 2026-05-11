@@ -1,0 +1,16 @@
+.form {}
+
+.form--title {
+	font-weight: 700;
+	font-size: 48px;
+	text-align: center;
+	color: #181821;
+}
+
+.form--signin {
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+}
+
+.form--info-input {}

@@ -1,0 +1,42 @@
+.form--box-input {
+
+	&:not(:last-child) {
+		padding-bottom: 25px;
+	}
+}
+
+.form--content-input {
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.form--input {
+	flex: 1 1 480px;
+	background: #dce0e3;
+	border-radius: 10px;
+	height: 60px;
+	padding: 0 20px;
+}
+
+.form--input-icon {
+	position: absolute;
+	right: 15px;
+}
+
+.form--error-message {
+	position: absolute;
+	bottom: -17px;
+	left: 0;
+	font-size: 14.5px;
+	color: rgb(226, 16, 16);
+}
+
+.form--forgot-password {
+	display: block;
+	font-weight: 700;
+	font-size: 20px;
+	color: #595959;
+	padding-top: 20px;
+}

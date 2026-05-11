@@ -1,0 +1,24 @@
+.form--social-text {
+	font-weight: 700;
+	font-size: 20px;
+	color: #595959;
+	padding-bottom: 20px;
+}
+
+.form--social-list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 30px;
+}
+
+.form--social-item {}
+
+.form--social-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 12px;
+	border: 2px solid #595959;
+	border-radius: 5px;
+}

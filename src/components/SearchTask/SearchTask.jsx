@@ -1,4 +1,5 @@
-import search from '../assets/icon_search.svg'
+import search from '../../assets/icon_search.svg'
+import './SearchTask.scss'
 
 const SearchTask = ({ searchQwery, setSearchQwery }) => { 
 	return (

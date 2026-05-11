@@ -1,6 +1,7 @@
-import fb  from '../assets/icon_fb.svg';
-import  google  from '../assets/icon_google.svg';
-import tiktok from '../assets/icon_tiktok.svg';
+import './Social.scss'
+import fb  from '../../assets/icon_fb.svg';
+import google from '../../assets/icon_google.svg';
+import tiktok from '../../assets/icon_tiktok.svg';
 
 const Social = () => {
 	return (
