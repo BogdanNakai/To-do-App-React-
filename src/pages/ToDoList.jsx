@@ -15,6 +15,7 @@ const ToDoList = () => {
 	const [newTaskTitle, setNewTaskTitle] = useState('');
 	const [searchQwery, setSearchQwery] = useState('')
 	const [filterIsDone, setFilterIsDone] = useState('')
+	const [idTaskEdit, setIdTaskEdit] = useState('')
 	const [rename, setRename] = useState(false)
 	const { id } = useParams();
 
@@ -53,21 +54,61 @@ const ToDoList = () => {
 				return {
 					...e,
 					tasks: e.tasks.filter((t) => t.id !== idTask)
-				};			
+				};
 			}
 			return e
 		})
-	/* 	console.log(newUsersTask); */
+		console.log(newUsersTask);
 		setTask(newUsersTask)
 	}
 
-	const toggleCheckBox = (id) => {
-
+	const toggleCheckBox = (idTask) => {
+		const newUsersTask = task.map((e) => {
+			if (e.id === id) {
+				return {
+					...e,
+					tasks: e.tasks.map((t) => {
+						if (t.id === idTask) {
+							return { ...t, done: !t.done }
+						}
+						return t
+					})
+				};
+			}
+			return e
+		})
+		setTask(newUsersTask)
 	}
 
-	const getEditControls = (id) => {
-
+	const getEditControls = (titleTask, idTask) => {
+		setActivePopap('active')
+		setRename(true)
+		setNewTaskTitle(titleTask)
+		setIdTaskEdit(idTask)
 	}
+
+	const renameTask = () => {
+		if (idTaskEdit) {
+			const newUsersTask = task.map((e) => {
+				if (e.id === id) {
+					return {
+						...e,
+						tasks: e.tasks.map((t) => {
+							if (t.id === idTaskEdit) {
+								return { ...t, title:newTaskTitle }
+							}
+							return t
+						})
+					};
+				}
+				return e
+			})
+			setTask(newUsersTask)
+			setActivePopap('')
+		}
+	}
+
+
 
 	useEffect(() => {
 		localStorage.setItem('users', JSON.stringify(task))
@@ -93,9 +134,9 @@ const ToDoList = () => {
 						</div>
 					</div>
 					<div className="todo--list-task">
-						<ToDoTask task={userTasks} filteredTasks={filteredTasks} filteredByDone={filteredByDone} toggleCheckBox={toggleCheckBox} deleteTask={deleteTask} getEditControls={getEditControls} />
+						<ToDoTask task={userTasks} filteredTasks={filteredTasks} filteredByDone={filteredByDone} toggleCheckBox={toggleCheckBox} deleteTask={deleteTask} getEditControls={getEditControls}  />
 					</div>
-					<PopapAddTask active={activePopap} setActivePopap={setActivePopap} newTaskTitle={newTaskTitle} setNewTaskTitle={setNewTaskTitle} addTask={addTask} rename={rename} setRename={setRename} />
+					<PopapAddTask active={activePopap} setActivePopap={setActivePopap} newTaskTitle={newTaskTitle} setNewTaskTitle={setNewTaskTitle} addTask={addTask} rename={rename} setRename={setRename} renameTask={renameTask} />
 				</div>
 				<ButtonAddTask setActivePopap={setActivePopap} setNewTaskTitle={setNewTaskTitle} />
 			</div>

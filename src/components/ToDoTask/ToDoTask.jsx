@@ -14,7 +14,7 @@ const ToDoTask = ({ task, filteredTasks, filteredByDone, toggleCheckBox, deleteT
 						{item.title}
 					</Link>
 					<div className="todo--item-btns">
-						<button onClick={() => getEditControls(item.id)} className="todo-item-action">
+						<button onClick={() => getEditControls(item.title, item.id)} className="todo-item-action">
 							<img src={edit} alt="edit" />
 						</button>
 						<button onClick={() => deleteTask(item.id)} className="todo-item-action">

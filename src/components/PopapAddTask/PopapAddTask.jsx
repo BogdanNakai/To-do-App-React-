@@ -1,6 +1,6 @@
 import './PopapAddTask.scss'
 
-const PopapAddTask = ({ active, setActivePopap, newTaskTitle, setNewTaskTitle, addTask, rename }) => {
+const PopapAddTask = ({ active, setActivePopap, newTaskTitle, setNewTaskTitle, addTask, rename, renameTask }) => {
 	return (
 		<div className={`todo--popapAddTask popapAddTask ${active}`}>
 			<h3 className="popapAddTask--title">New Note</h3>
@@ -9,7 +9,7 @@ const PopapAddTask = ({ active, setActivePopap, newTaskTitle, setNewTaskTitle, a
 			</div>
 			<div className="popapAddTask--btn-action">
 				<button className="popapAddTask--button-cancel" onClick={() => setActivePopap('')}>Cancel</button>
-				{rename ? (<button className='popapAddTask--button-apply popapAddTask--button-apply-rename' >Rename</button>
+				{rename ? (<button onClick={() => { renameTask() }} className='popapAddTask--button-apply popapAddTask--button-apply-rename'>Rename</button>
 				) : (
 					<button className={`popapAddTask--button-apply`} onClick={() => {
 						addTask()
