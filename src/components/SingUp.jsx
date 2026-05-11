@@ -6,9 +6,12 @@ import security from '../assets/icon_security.svg'
 import email from '../assets/icon_email.svg'
 import '../scss/forms.scss'
 import InputForm from "./InputForm";
+import { useNavigate } from "react-router-dom";
 
 
 const SingUp = () => {
+	const navigate = useNavigate()
+
 	const {
 		control,
 		handleSubmit,
@@ -31,8 +34,9 @@ const SingUp = () => {
 			return
 		}
 
-		users.push({ ...data, id: crypto.randomUUID() 	});
-
+		const dataUser = { ...data, id: crypto.randomUUID() }
+		users.push(dataUser);
+		navigate(`/todolist/${dataUser.id}`)
 		localStorage.setItem(`users`, JSON.stringify(users));
 	}
 

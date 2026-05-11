@@ -13,7 +13,7 @@ const AppComponents = () => {
 				<Route path="/" element={<Registration to="/registration" replace />} />
 				<Route path="/registration" element={<Registration/>} /> 
 				<Route path="/login" element={<Login />} />
-				<Route path="/todolist" element={<ToDoList />} />
+				<Route path="/todolist/:id" element={<ToDoList />} />
 			</Routes>
 		</Suspense>
 	)

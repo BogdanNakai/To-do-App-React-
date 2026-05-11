@@ -1,11 +1,11 @@
-const SelectTypeTask = () => { 
+const SelectTypeTask = ({setFilterIsDone}) => { 
 	return (
 		<>
 			<div className="todo--select-task">
-				<select name="selectType" id="selectType">
-					<option defaultValue="all">All</option>
-					<option defaultValue="done">Done</option>
-					<option defaultValue="not-done">Not done</option>
+				<select onChange={(e) => setFilterIsDone(e.target.value)} name="selectType" id="selectType">
+					<option value="all">All</option>
+					<option value="done">Done</option>
+					<option value="not-done">Not done</option>
 				</select>
 			</div>
 		</>

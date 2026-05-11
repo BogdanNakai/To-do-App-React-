@@ -1,8 +1,10 @@
-const ButtonAddTask = () => {
+const ButtonAddTask = ({ setActivePopap, setNewTaskTitle }) => {
 	return (
 		<div className="todo--addTask">
-			<button className="todo--button-addTask">
-				
+			<button onClick={() => {
+				setNewTaskTitle('');
+				setActivePopap('active')
+			}} className="todo--button-addTask">
 			</button>
 		</div>
 	)

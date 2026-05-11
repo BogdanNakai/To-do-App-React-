@@ -5,17 +5,38 @@ import user from '../assets/icon_user.svg'
 import security from '../assets/icon_security.svg'
 import '../scss/forms.scss'
 import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const SingIn = () => {
+
+	const navigate = useNavigate()
 
 	const {
 		control,
 		handleSubmit,
 		message,
+		setError,
 		formState: { errors },
 	} = useForm()
 
-	const onSubmit = (data) => console.log(data)
+	/* 	console.log(errors); */
+
+	const onSubmit = (data) => {
+		const users = JSON.parse(localStorage.getItem('users')) || [];
+
+		const isUserUsed = users.find(user => user.user === data.user);
+		const isPassWordUsed = users.find(user => user.passwordSingUp === data.password);
+
+		if (!isUserUsed && !isPassWordUsed) {
+			setError('user', {
+				type: 'manual',
+				message: 'A user with this email address already exists'
+			})
+			return
+		}
+
+		navigate(`/todolist/${isUserUsed.id}`)
+	}
 
 	return (
 		<div className="registration--form form">
