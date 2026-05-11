@@ -36,7 +36,12 @@ const SingUp = () => {
 			return
 		}
 
-		const dataUser = { ...data, id: crypto.randomUUID() }
+		const dataUser = {
+			...data, id: crypto.randomUUID(), tasks: [{
+				id: crypto.randomUUID(),
+				title: "Lorem 1",
+				done: false
+			}] }
 		users.push(dataUser);
 		navigate(`/todolist/${dataUser.id}`)
 		localStorage.setItem(`users`, JSON.stringify(users));
