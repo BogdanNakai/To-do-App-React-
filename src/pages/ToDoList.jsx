@@ -26,14 +26,12 @@ const ToDoList = () => {
 		}
 	})
 
-	const userTasks = task.find((e) => e.id === id)?.tasks;
+	const userTasks = task.find((e) => e.id === id).tasks;
 
 	const addTask = () => {
 		if (newTaskTitle.trim().length > 0) {
 			const newUsersTask = task.map((e) => {
-				console.log(id);
 				if (e.id === id) {
-					
 					e.tasks.push(
 						{
 							id: crypto.randomUUID(),
@@ -50,15 +48,17 @@ const ToDoList = () => {
 	};
 
 	const deleteTask = (idTask) => {
-		const userIdPage = task.map((e) => {
+		const newUsersTask = task.map((e) => {
 			if (e.id === id) {
-				e.tasks.filter((e) => e.id !== idTask);
+				return {
+					...e,
+					tasks: e.tasks.filter((t) => t.id !== idTask)
+				};			
 			}
 			return e
-		});
-		console.log(userIdPage);
-
-		setTask([userIdPage])
+		})
+	/* 	console.log(newUsersTask); */
+		setTask(newUsersTask)
 	}
 
 	const toggleCheckBox = (id) => {
