@@ -46,7 +46,7 @@ const SingUp = () => {
 		users.push(dataUser);
 		localStorage.setItem('currentUserId', dataUser.id)
 		localStorage.setItem(`users`, JSON.stringify(users));
-		navigate(`/todolist/${dataUser.id}`)
+		navigate(`/`)
 		
 	}
 

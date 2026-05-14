@@ -16,19 +16,12 @@ const AppComponents = () => {
 	return (
 		<Suspense fallback={<Loading />}>
 			<Routes>
-				<Route
-					path="/"
-					element={
-						userId
-							? <Navigate to={`/todolist/${userId}`} replace />
-							: <Navigate to="/login" replace />
-					}
-				/>
+
 				<Route path="/registration" element={<Registration />} />
 				<Route path="/login" element={<Login />} />
 				<Route element={<ProtectedRoute />}>
-					<Route path="/todolist/:id" element={<ToDoList />} />
-					<Route path="/todolist/:userId/task/:taskId" element={<ItemTask />} />
+					<Route path="/" element={<ToDoList />} />
+					<Route path="/todo/:taskId" element={<ItemTask />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />
 			</Routes>

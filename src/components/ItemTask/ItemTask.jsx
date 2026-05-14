@@ -5,7 +5,8 @@ import './ItemTask.scss'
 
 const ItemTask = () => {
 	const navigate = useNavigate();
-	const { userId, taskId } = useParams();
+	const id = localStorage.getItem('currentUserId')
+	const { taskId } = useParams();
 	const [tasks, setTasks] = useState(() => {
 		const saveData = JSON.parse(localStorage.getItem('users'))
 
@@ -14,7 +15,7 @@ const ItemTask = () => {
 		}
 	});
 
-	const task = tasks.find((e) => e.id === userId).tasks.find((e) => e.id === taskId)
+	const task = tasks.find((e) => e.id === id).tasks.find((e) => e.id === taskId)
 	const [status, setStatus] = useState((() => {
 		if (task.done) {
 			return 'Complete'
@@ -28,12 +29,12 @@ const ItemTask = () => {
 	}, [tasks, status])
 
 	const handleExit = () => {
-		navigate(`/todolist/${userId}`, { replace: true })
+		navigate(`/`, { replace: true })
 	}
 
 	const replaceStatus = () => {
 		const newDone = tasks.map((e) => {
-			if (e.id === userId) {
+			if (e.id === id) {
 				return {
 					...e,
 					tasks: e.tasks.map((t) => {

@@ -12,7 +12,7 @@ const ToDoTask = ({ users, filteredTasks, filteredByDone, toggleCheckBox, delete
 			{arrTasks?.length ? (arrTasks)?.map((item) => {
 				return (<li key={item.id} className="todo--item">
 					<input type="checkbox" onChange={() => toggleCheckBox(item.id)} className="todo--item-done" name="todoCheckedTask" id="todoCheckedTask" defaultChecked={item.done} />
-					<Link to={`task/${item.id}`} className="todo--info">
+					<Link to={`todo/${item.id}`} className="todo--info">
 						{item.title}
 					</Link>
 					<div className="todo--item-btns">

@@ -35,7 +35,7 @@ const SingIn = () => {
 			return
 		}
 		localStorage.setItem('currentUserId', matchedUser.id)
-		navigate(`/todolist/${matchedUser.id}`)
+		navigate(`/`)
 	}
 
 	return (

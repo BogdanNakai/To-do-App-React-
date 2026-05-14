@@ -19,7 +19,7 @@ const ToDoList = () => {
 	const [filterIsDone, setFilterIsDone] = useState('')
 	const [idTaskEdit, setIdTaskEdit] = useState('')
 	const [rename, setRename] = useState(false)
-	const { id } = useParams();
+	const id = localStorage.getItem('currentUserId');
 
 	const [users, setUsers] = useState(() =>
 		JSON.parse(localStorage.getItem('users')) || []
@@ -111,6 +111,7 @@ const ToDoList = () => {
 				return e
 			})
 			setUsers(newUsersTask)
+			setRename(false)
 			setActivePopap('')
 		}
 	}
