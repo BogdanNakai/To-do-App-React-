@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import '../scss/todo.scss'
 
 import ButtonThems from "../components/ButtonThems/ButtonThems";
 import SearchTask from "../components/SearchTask/SearchTask";
-import SelectTypetask from "../components/SelectTypeTask/SelectTypeTask";
+import SelectTypeTask from "../components/SelectTypeTask/SelectTypeTask";
 import ToDoTask from '../components/ToDoTask/ToDoTask';
 import ButtonAddTask from '../components/ButtonAddTask/ButtonAddTask';;
 import PopapAddTask from '../components/PopapAddTask/PopapAddTask';
-import { useParams } from 'react-router-dom';
+import NotFound from './NotFound';
+
 
 const ToDoList = () => {
 	const [activePopap, setActivePopap] = useState('');
@@ -27,7 +29,12 @@ const ToDoList = () => {
 		}
 	})
 
-	const userTasks = task.find((e) => e.id === id).tasks;
+	const userTasks = task.find((e) => e.id === id)?.tasks;
+	const idUsers = task.find((e) => e.id === id);
+
+	if (!idUsers) {
+		return <NotFound />;
+	}
 
 	const addTask = () => {
 		if (newTaskTitle.trim().length > 0) {
@@ -108,8 +115,6 @@ const ToDoList = () => {
 		}
 	}
 
-
-
 	useEffect(() => {
 		localStorage.setItem('users', JSON.stringify(task))
 	}, [task])
@@ -118,6 +123,8 @@ const ToDoList = () => {
 	const filteredByDone = filterIsDone === 'done' ? userTasks.filter(({ done }) => done) : filterIsDone === 'not-done' ? userTasks.filter(({ done }) => !done) : userTasks
 	const clearSearchQwery = searchQwery.trim().toLocaleLowerCase()
 	const filteredTasks = clearSearchQwery.length > 0 ? filteredByDone.filter(({ title }) => title.toLocaleLowerCase().includes(searchQwery)) : null;
+
+
 
 	return (
 		<div className={`todo ${activePopap}`}>
@@ -129,7 +136,7 @@ const ToDoList = () => {
 					<div className="todo--content">
 						<div className="todo--header">
 							<SearchTask searchQwery={searchQwery} setSearchQwery={setSearchQwery} />
-							<SelectTypetask setFilterIsDone={setFilterIsDone} />
+							<SelectTypeTask setFilterIsDone={setFilterIsDone} />
 							<ButtonThems />
 						</div>
 					</div>
