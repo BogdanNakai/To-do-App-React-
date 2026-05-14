@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 import './ToDoTask.scss'
 import edit from '../../assets/icon_edit.svg'
 import remove from '../../assets/icon_remove.svg'
+import previewTask from '../../assets/preview_tasks.svg'
 
 const ToDoTask = ({ task, filteredTasks, filteredByDone, toggleCheckBox, deleteTask, getEditControls }) => {
+	const arrTasks = filteredTasks ?? filteredByDone ?? task
 
 	return (
 		<ul className="todo--list">
-			{(filteredTasks ?? filteredByDone ?? task)?.map((item) => { 
-				return( <li key={item.id} className="todo--item">
+			{arrTasks?.length ? (arrTasks)?.map((item) => {
+				return (<li key={item.id} className="todo--item">
 					<input type="checkbox" onChange={() => toggleCheckBox(item.id)} className="todo--item-done" name="todoCheckedTask" id="todoCheckedTask" defaultChecked={item.done} />
-					<Link to={`taslk/${item.id}`} className="todo--info">
+					<Link to={`task/${item.id}`} className="todo--info">
 						{item.title}
 					</Link>
 					<div className="todo--item-btns">
@@ -22,7 +24,9 @@ const ToDoTask = ({ task, filteredTasks, filteredByDone, toggleCheckBox, deleteT
 						</button>
 					</div>
 				</li>)
-			})}
+			}) : <li className="todo--item-preview"><img src={previewTask} alt="Image" />
+				Empty...
+			</li>}
 		</ul>
 	)
 };

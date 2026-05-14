@@ -43,3 +43,15 @@
 		height: 100%;
 	}
 }
+
+.todo--item-preview {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 20px;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 100%;
+	text-transform: capitalize;
+	color: #252525;
+}
