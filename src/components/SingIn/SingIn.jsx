@@ -25,10 +25,9 @@ const SingIn = () => {
 	const onSubmit = (data) => {
 		const users = JSON.parse(localStorage.getItem('users')) || [];
 
-		const isUserUsed = users.find(user => user.user === data.user);
-		const isPassWordUsed = users.find(user => user.passwordSingUp === data.password);
+		const isUserUsed = users.find(user => user.user === data.user && user.passwordSingUp === data.password);
 
-		if (!isUserUsed && !isPassWordUsed) {
+		if (!isUserUsed) {
 			setError('user', {
 				type: 'manual',
 				message: 'A user with this email address already exists'
