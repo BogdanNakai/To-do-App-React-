@@ -41,10 +41,13 @@ const SingUp = () => {
 				id: crypto.randomUUID(),
 				title: "Lorem 1",
 				done: false
-			}] }
+			}]
+		}
 		users.push(dataUser);
-		navigate(`/todolist/${dataUser.id}`)
+		localStorage.setItem('currentUserId', dataUser.id)
 		localStorage.setItem(`users`, JSON.stringify(users));
+		navigate(`/todolist/${dataUser.id}`)
+		
 	}
 
 	return (

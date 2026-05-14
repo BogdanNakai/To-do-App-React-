@@ -21,42 +21,43 @@ const ToDoList = () => {
 	const [rename, setRename] = useState(false)
 	const { id } = useParams();
 
-	const [task, setTask] = useState(() => {
-		const saveData = JSON.parse(localStorage.getItem('users'))
+	const [users, setUsers] = useState(() =>
+		JSON.parse(localStorage.getItem('users')) || []
+	)
 
-		if (saveData) {
-			return saveData;
-		}
-	})
-
-	const userTasks = task.find((e) => e.id === id)?.tasks;
-	const idUsers = task.find((e) => e.id === id);
+	const userTasks = users.find((e) => e.id === id)?.tasks || [];
+	const idUsers = users.find((e) => e.id === id);
 
 	if (!idUsers) {
 		return <NotFound />;
 	}
 
 	const addTask = () => {
-		if (newTaskTitle.trim().length > 0) {
-			const newUsersTask = task.map((e) => {
-				if (e.id === id) {
-					e.tasks.push(
-						{
-							id: crypto.randomUUID(),
-							title: newTaskTitle,
-							done: false
-						});
-				}
-				return e
-			})
-			setTask(newUsersTask)
-			setNewTaskTitle('')
-			setActivePopap('')
-		}
+		if (newTaskTitle.trim().length === 0) return;
+
+		const newTask = {
+			id: crypto.randomUUID(),
+			title: newTaskTitle,
+			done: false
+		};
+
+		const newUsersTask = users.map((e) => {
+			if (e.id === id) {
+				return {
+					...e,
+					tasks: [...e.tasks, newTask]
+				};
+			}
+			return e;
+		});
+
+		setUsers(newUsersTask);
+		setNewTaskTitle('');
+		setActivePopap('');
 	};
 
 	const deleteTask = (idTask) => {
-		const newUsersTask = task.map((e) => {
+		const newUsersTask = users.map((e) => {
 			if (e.id === id) {
 				return {
 					...e,
@@ -65,12 +66,11 @@ const ToDoList = () => {
 			}
 			return e
 		})
-		console.log(newUsersTask);
-		setTask(newUsersTask)
+		setUsers(newUsersTask)
 	}
 
 	const toggleCheckBox = (idTask) => {
-		const newUsersTask = task.map((e) => {
+		const newUsersTask = users.map((e) => {
 			if (e.id === id) {
 				return {
 					...e,
@@ -84,7 +84,7 @@ const ToDoList = () => {
 			}
 			return e
 		})
-		setTask(newUsersTask)
+		setUsers(newUsersTask)
 	}
 
 	const getEditControls = (titleTask, idTask) => {
@@ -96,13 +96,13 @@ const ToDoList = () => {
 
 	const renameTask = () => {
 		if (idTaskEdit) {
-			const newUsersTask = task.map((e) => {
+			const newUsersTask = users.map((e) => {
 				if (e.id === id) {
 					return {
 						...e,
 						tasks: e.tasks.map((t) => {
 							if (t.id === idTaskEdit) {
-								return { ...t, title:newTaskTitle }
+								return { ...t, title: newTaskTitle }
 							}
 							return t
 						})
@@ -110,19 +110,19 @@ const ToDoList = () => {
 				}
 				return e
 			})
-			setTask(newUsersTask)
+			setUsers(newUsersTask)
 			setActivePopap('')
 		}
 	}
 
 	useEffect(() => {
-		localStorage.setItem('users', JSON.stringify(task))
-	}, [task])
+		localStorage.setItem('users', JSON.stringify(users))
+	}, [users])
 
 
 	const filteredByDone = filterIsDone === 'done' ? userTasks.filter(({ done }) => done) : filterIsDone === 'not-done' ? userTasks.filter(({ done }) => !done) : userTasks
 	const clearSearchQwery = searchQwery.trim().toLocaleLowerCase()
-	const filteredTasks = clearSearchQwery.length > 0 ? filteredByDone.filter(({ title }) => title.toLocaleLowerCase().includes(searchQwery)) : null;
+	const filteredTasks = clearSearchQwery.length > 0 ? filteredByDone.filter(({ title }) => title.toLocaleLowerCase().includes(clearSearchQwery)) : null;
 
 
 
@@ -141,7 +141,7 @@ const ToDoList = () => {
 						</div>
 					</div>
 					<div className="todo--list-task">
-						<ToDoTask task={userTasks} filteredTasks={filteredTasks} filteredByDone={filteredByDone} toggleCheckBox={toggleCheckBox} deleteTask={deleteTask} getEditControls={getEditControls}  />
+						<ToDoTask users={userTasks} filteredTasks={filteredTasks} filteredByDone={filteredByDone} toggleCheckBox={toggleCheckBox} deleteTask={deleteTask} getEditControls={getEditControls} />
 					</div>
 					<PopapAddTask active={activePopap} setActivePopap={setActivePopap} newTaskTitle={newTaskTitle} setNewTaskTitle={setNewTaskTitle} addTask={addTask} rename={rename} setRename={setRename} renameTask={renameTask} />
 				</div>

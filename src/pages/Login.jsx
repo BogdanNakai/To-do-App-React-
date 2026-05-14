@@ -3,9 +3,7 @@ import SingIn from "../components/SingIn/SingIn";
 import '../scss/registration.scss'
 
 const Login = () => {
-
 	const welcomePosition = "signup"
-
 	return (
 		<>
 			<div className="registration">
