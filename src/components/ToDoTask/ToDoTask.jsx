@@ -4,8 +4,8 @@ import edit from '../../assets/icon_edit.svg'
 import remove from '../../assets/icon_remove.svg'
 import previewTask from '../../assets/preview_tasks.svg'
 
-const ToDoTask = ({ task, filteredTasks, filteredByDone, toggleCheckBox, deleteTask, getEditControls }) => {
-	const arrTasks = filteredTasks ?? filteredByDone ?? task
+const ToDoTask = ({ users, filteredTasks, filteredByDone, toggleCheckBox, deleteTask, getEditControls }) => {
+	const arrTasks = filteredTasks ?? filteredByDone ?? users
 
 	return (
 		<ul className="todo--list">
