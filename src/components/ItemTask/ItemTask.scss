@@ -1,0 +1,41 @@
+.page-task {}
+
+.page-task--container {}
+
+.page-task--body {}
+
+.page-task--title {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.page-task--status {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.page-task--status_Incomplete span {
+	color: rgb(255, 0, 0);
+}
+.page-task--status_Complete span {
+	color: rgb(17, 255, 0);
+}
+
+.page-task--box-button-action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+
+.page-task--button {
+	background-color: #6c63ff;
+	color: #fff;
+	width: 90px;
+	height: 30px;
+	border-radius: 5px;
+}
+
+.page-task--button-status {}
+
+.page-task--button-exit {}
