@@ -25,17 +25,17 @@ const SingIn = () => {
 	const onSubmit = (data) => {
 		const users = JSON.parse(localStorage.getItem('users')) || [];
 
-		const isUserUsed = users.find(user => user.user === data.user && user.passwordSingUp === data.password);
+		const matchedUser = users.find(user => user.user === data.user && user.passwordSingUp === data.password);
 
-		if (!isUserUsed) {
+		if (!matchedUser) {
 			setError('user', {
 				type: 'manual',
-				message: 'A user with this email address already exists'
+				message: 'User not found'
 			})
 			return
 		}
-
-		navigate(`/todolist/${isUserUsed.id}`)
+		localStorage.setItem('currentUserId', matchedUser.id)
+		navigate(`/todolist/${matchedUser.id}`)
 	}
 
 	return (
