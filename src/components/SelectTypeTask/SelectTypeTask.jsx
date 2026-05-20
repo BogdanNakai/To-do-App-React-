@@ -1,34 +1,16 @@
 import './SelectTypeTask.scss'
 import arrow from '../../assets/icon_arow.svg'
-import { useEffect, useState, useRef } from 'react';
+import useSelect from '../../hooks/useSelect';
 
-const SelectTypeTask = ({ setFilterIsDone }) => {
 
-	const [currentSelect, setCurrentSelect] = useState('All')
-	const [isActive, setIsActive] = useState('')
-	const boxRef = useRef(null);
+const SelectTypeTask = ({ select }) => {
 
-	useEffect(() => {
-		const handleClickOutside = (event) => {
-			if (boxRef.current && !boxRef.current.contains(event.target)) {
-				setIsActive('')
-			} else { 
-				setIsActive('is-active')
-			}
-		};
-		document.addEventListener('mousedown', handleClickOutside);
-
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, []);
-
-	const handleSelectItem = (e) => {
-		const value = e.currentTarget.getAttribute('data-value');
-		setFilterIsDone(value)
-		setCurrentSelect(e.currentTarget.textContent)
-		setIsActive('');
-	};
+	const {
+		currentSelect,
+		isActive,
+		boxRef,
+		handleSelectItem
+	} = select;
 
 	return (
 		<>
@@ -48,10 +30,3 @@ const SelectTypeTask = ({ setFilterIsDone }) => {
 };
 
 export default SelectTypeTask
-
-
-{/* 	<select onChange={(e) => setFilterIsDone(e.target.value)} name="selectType" id="selectType">
-					<option value="all">All</option>
-					<option value="done">Done</option>
-					<option value="not-done">Not done</option>
-				</select> */}

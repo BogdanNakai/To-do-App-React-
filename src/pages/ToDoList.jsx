@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+
 
 import '../scss/todo.scss'
 
@@ -10,125 +9,45 @@ import ToDoTask from '../components/ToDoTask/ToDoTask';
 import ButtonAddTask from '../components/ButtonAddTask/ButtonAddTask';;
 import PopapAddTask from '../components/PopapAddTask/PopapAddTask';
 import NotFound from './NotFound';
+import useTasks from '../hooks/useTasks';
+import useSelect from '../hooks/useSelect';
+import useFilter from '../hooks/useFilter';
 
 
 const ToDoList = () => {
-	const [activePopap, setActivePopap] = useState('');
-	const [newTaskTitle, setNewTaskTitle] = useState('');
-	const [searchQwery, setSearchQwery] = useState('')
-	const [filterIsDone, setFilterIsDone] = useState('')
-	const [idTaskEdit, setIdTaskEdit] = useState('')
-	const [rename, setRename] = useState(false)
-	const id = localStorage.getItem('currentUserId');
 
-	const [users, setUsers] = useState(() =>
-		JSON.parse(localStorage.getItem('users')) || []
-	)
 
-	const userTasks = users.find((e) => e.id === id)?.tasks || [];
-	const idUsers = users.find((e) => e.id === id);
+	const select = useSelect();
+
+	const {
+		idUsers,
+		userTasks,
+		toggleCheckBox,
+		deleteTask,
+		getEditControls,
+		activePopup,
+		newTaskTitle,
+		addTask,
+		isRenameMode,
+		setisRenameMode,
+		isRenameModeTask,
+		setactivePopup,
+		setNewTaskTitle,
+	} = useTasks()
+
+	const {
+		searchQuery,
+		setSearchQuery,
+		filteredByDone,
+		filteredTasks, 
+	} = useFilter(select.filterIsDone, userTasks)
 
 	if (!idUsers) {
 		return <NotFound />;
 	}
 
-	const addTask = () => {
-		if (newTaskTitle.trim().length === 0) return;
-
-		const newTask = {
-			id: crypto.randomUUID(),
-			title: newTaskTitle,
-			done: false
-		};
-
-		const newUsersTask = users.map((e) => {
-			if (e.id === id) {
-				return {
-					...e,
-					tasks: [...e.tasks, newTask]
-				};
-			}
-			return e;
-		});
-
-		setUsers(newUsersTask);
-		setNewTaskTitle('');
-		setActivePopap('');
-	};
-
-	const deleteTask = (idTask) => {
-		const newUsersTask = users.map((e) => {
-			if (e.id === id) {
-				return {
-					...e,
-					tasks: e.tasks.filter((t) => t.id !== idTask)
-				};
-			}
-			return e
-		})
-		setUsers(newUsersTask)
-	}
-
-	const toggleCheckBox = (idTask) => {
-		const newUsersTask = users.map((e) => {
-			if (e.id === id) {
-				return {
-					...e,
-					tasks: e.tasks.map((t) => {
-						if (t.id === idTask) {
-							return { ...t, done: !t.done }
-						}
-						return t
-					})
-				};
-			}
-			return e
-		})
-		setUsers(newUsersTask)
-	}
-
-	const getEditControls = (titleTask, idTask) => {
-		setActivePopap('active')
-		setRename(true)
-		setNewTaskTitle(titleTask)
-		setIdTaskEdit(idTask)
-	}
-
-	const renameTask = () => {
-		if (idTaskEdit) {
-			const newUsersTask = users.map((e) => {
-				if (e.id === id) {
-					return {
-						...e,
-						tasks: e.tasks.map((t) => {
-							if (t.id === idTaskEdit) {
-								return { ...t, title: newTaskTitle }
-							}
-							return t
-						})
-					};
-				}
-				return e
-			})
-			setUsers(newUsersTask)
-			setRename(false)
-			setActivePopap('')
-		}
-	}
-
-	useEffect(() => {
-		localStorage.setItem('users', JSON.stringify(users))
-	}, [users])
-
-
-	const filteredByDone = filterIsDone === 'done' ? userTasks.filter(({ done }) => done) : filterIsDone === 'not-done' ? userTasks.filter(({ done }) => !done) : userTasks
-	const clearSearchQwery = searchQwery.trim().toLocaleLowerCase()
-	const filteredTasks = clearSearchQwery.length > 0 ? filteredByDone.filter(({ title }) => title.toLocaleLowerCase().includes(clearSearchQwery)) : null;
-
-
-
 	return (
-		<div className={`todo ${activePopap}`}>
+		<div className={`todo ${activePopup}`}>
 			<div className="todo--container">
 				<div className="todo--body">
 					<h2 className="todo--title">
@@ -136,17 +55,37 @@ const ToDoList = () => {
 					</h2>
 					<div className="todo--content">
 						<div className="todo--header">
-							<SearchTask searchQwery={searchQwery} setSearchQwery={setSearchQwery} />
-							<SelectTypeTask setFilterIsDone={setFilterIsDone} />
+							<SearchTask
+								searchQuery={searchQuery}
+								setSearchQuery={setSearchQuery} />
+							<SelectTypeTask
+								select={select}
+							/>
 							<ButtonThems />
 						</div>
 					</div>
 					<div className="todo--list-task">
-						<ToDoTask users={userTasks} filteredTasks={filteredTasks} filteredByDone={filteredByDone} toggleCheckBox={toggleCheckBox} deleteTask={deleteTask} getEditControls={getEditControls} />
+						<ToDoTask
+							users={userTasks}
+							filteredTasks={filteredTasks}
+							filteredByDone={filteredByDone}
+							toggleCheckBox={toggleCheckBox}
+							deleteTask={deleteTask}
+							getEditControls={getEditControls} />
 					</div>
-					<PopapAddTask active={activePopap} setActivePopap={setActivePopap} newTaskTitle={newTaskTitle} setNewTaskTitle={setNewTaskTitle} addTask={addTask} rename={rename} setRename={setRename} renameTask={renameTask} />
+					<PopapAddTask
+						active={activePopup}
+						setactivePopup={setactivePopup}
+						newTaskTitle={newTaskTitle}
+						setNewTaskTitle={setNewTaskTitle}
+						addTask={addTask}
+						isRenameMode={isRenameMode}
+						setisRenameMode={setisRenameMode}
+						isRenameModeTask={isRenameModeTask} />
 				</div>
-				<ButtonAddTask setActivePopap={setActivePopap} setNewTaskTitle={setNewTaskTitle} />
+				<ButtonAddTask
+					setactivePopup={setactivePopup}
+					setNewTaskTitle={setNewTaskTitle} />
 			</div>
 		</div>
 	)
