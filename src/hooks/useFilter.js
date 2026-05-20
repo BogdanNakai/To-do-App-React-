@@ -9,7 +9,7 @@ const useFilter = (filterIsDone, userTasks) => {
 		const clearsearchQuery = searchQuery.trim().toLocaleLowerCase();
 
 		return clearsearchQuery.length > 0 ? filteredByDone.filter(({ title }) => title.toLocaleLowerCase().includes(clearsearchQuery)) : filteredByDone;
-	})
+	}, [searchQuery, filteredByDone])
 
 	return {
 		searchQuery,
