@@ -1,6 +1,14 @@
 import './PopapAddTask.scss'
 
-const PopapAddTask = ({ active, setActivePopap, newTaskTitle, setNewTaskTitle, addTask, rename, renameTask }) => {
+const PopapAddTask = ({ active, setactivePopup, newTaskTitle, setNewTaskTitle, addTask, isRenameMode, isRenameModeTask }) => {
+
+	window.addEventListener('keydown', (e) => {
+		if (e.key === 'Enter' && active === 'active' ) { 
+			addTask()
+		}
+	});
+
+
 	return (
 		<div className={`todo--popapAddTask popapAddTask ${active}`}>
 			<h3 className="popapAddTask--title">New Note</h3>
@@ -8,8 +16,8 @@ const PopapAddTask = ({ active, setActivePopap, newTaskTitle, setNewTaskTitle, a
 				<input placeholder="Input your note..." value={newTaskTitle} onChange={(e) => { setNewTaskTitle(e.target.value) }} type="text" name="addTask" id="addTask" className="popapAddTask--input" />
 			</div>
 			<div className="popapAddTask--btn-action">
-				<button className="popapAddTask--button-cancel" onClick={() => setActivePopap('')}>Cancel</button>
-				{rename ? (<button onClick={() => { renameTask() }} className='popapAddTask--button-apply popapAddTask--button-apply-rename'>Rename</button>
+				<button className="popapAddTask--button-cancel" onClick={() => setactivePopup('')}>Cancel</button>
+				{isRenameMode ? (<button onClick={() => { isRenameModeTask() }} className='popapAddTask--button-apply popapAddTask--button-apply-isRenameMode'>isRenameMode</button>
 				) : (
 					<button className={`popapAddTask--button-apply`} onClick={() => {
 						addTask()
