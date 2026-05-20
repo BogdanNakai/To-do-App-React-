@@ -1,11 +1,11 @@
 import './ButtonAddTask.scss'
 
-const ButtonAddTask = ({ setActivePopap, setNewTaskTitle }) => {
+const ButtonAddTask = ({ setactivePopup, setNewTaskTitle }) => {
 	return (
 		<div className="todo--addTask">
 			<button onClick={() => {
 				setNewTaskTitle('');
-				setActivePopap('active')
+				setactivePopup('active')
 			}} className="todo--button-addTask">
 			</button>
 		</div>
