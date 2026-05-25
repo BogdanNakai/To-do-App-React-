@@ -1,13 +1,52 @@
 .registration {
 	position: relative;
-	padding: 50px 0;
+	display: flex;
+	align-items: center;
+	gap: 50px;
+	flex-direction: column-reverse;
+
+	@media (max-width: 1024px) {
+		gap: 25px;
+	}
+}
+
+.registration_signup {
+	@media (min-width: 767px) {
+		flex-direction: row-reverse;
+	}
+
+	.registration--container {
+		display: flex;
+		justify-content: end;
+	}
+}
+
+.registration_signin {
+	@media (min-width:767px) {
+		flex-direction: row;
+	}
+
+	.registration--container {
+		display: flex;
+		justify-content: start;
+	}
+}
+
+.registration--content {
+	flex: 0 0 100%;
+
+	@media (max-width: 767px) {
+		flex: 0 1 auto;
+		padding-bottom: 50px;
+	}
 }
 
 .registration--form {
-	flex: 0 1 480px;
+	flex: 1 1 480px;
 
 	@media (max-width: 768px) {
 		order: 2;
+		flex: 0 0 auto;
 	}
 }
 
@@ -15,10 +54,17 @@
 	display: flex;
 	align-items: center;
 	gap: 50px;
+	height: 100%;
+	width: 50%;
+
+	@media (max-width: 1034px) {
+		gap: 30px;
+	}
 
 	@media (max-width: 768px) {
 		flex-direction: column;
-		justify-content: end;
+		width: 100%;
+		height: auto;
 	}
 }
 

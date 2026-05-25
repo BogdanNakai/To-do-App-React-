@@ -8,13 +8,15 @@ import SingUp from "../components/SingUp/SingUp";
 const Registration = () => {
 	const welcomePosition = "signin"
 	return (
-		<div className="registration">
-			<div className="registration--container">
-				<div className={`registration--body registration--body_${welcomePosition}`}>
-					<SingUp />
-					<ComponentWelcome welcomePosition={welcomePosition} />
+		<div className={`registration registration_${welcomePosition}`}>
+			<div className="registration--content">
+				<div className="registration--container">
+					<div className={`registration--body registration--body_${welcomePosition}`}>
+						<SingUp />
+					</div>
 				</div>
 			</div>
+			<ComponentWelcome welcomePosition={welcomePosition} />
 		</div>
 	)
 };

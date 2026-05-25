@@ -6,13 +6,15 @@ const Login = () => {
 	const welcomePosition = "signup"
 	return (
 		<>
-			<div className="registration">
-				<div className="registration--container">
-					<div className={`registration--body registration--body_${welcomePosition}`}>
-						<ComponentWelcome welcomePosition={welcomePosition} />
-						<SingIn />
+			<div className={`registration registration_${welcomePosition}`}>
+				<div className="registration--content">
+					<div className="registration--container">
+						<div className={`registration--body registration--body_${welcomePosition}`}>
+							<SingIn />
+						</div>
 					</div>
 				</div>
+				<ComponentWelcome welcomePosition={welcomePosition} />
 			</div>
 		</>
 	)
