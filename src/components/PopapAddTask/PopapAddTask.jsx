@@ -17,7 +17,7 @@ const PopapAddTask = ({ active, setactivePopup, newTaskTitle, setNewTaskTitle, a
 			</div>
 			<div className="popapAddTask--btn-action">
 				<button className="popapAddTask--button-cancel" onClick={() => setactivePopup('')}>Cancel</button>
-				{isRenameMode ? (<button onClick={() => { isRenameModeTask() }} className='popapAddTask--button-apply popapAddTask--button-apply-isRenameMode'>isRenameMode</button>
+				{isRenameMode ? (<button onClick={() => { isRenameModeTask() }} className='popapAddTask--button-apply popapAddTask--button-apply-isRenameMode'>Rename</button>
 				) : (
 					<button className={`popapAddTask--button-apply`} onClick={() => {
 						addTask()
