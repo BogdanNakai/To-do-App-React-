@@ -16,7 +16,6 @@ const AppComponents = () => {
 	return (
 		<Suspense fallback={<Loading />}>
 			<Routes>
-
 				<Route path="/registration" element={<Registration />} />
 				<Route path="/login" element={<Login />} />
 				<Route element={<ProtectedRoute />}>

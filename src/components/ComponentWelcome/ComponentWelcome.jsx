@@ -9,7 +9,9 @@ const ComponentWelcome = ({ welcomePosition }) => {
 				<h1 className="welcome--title">{welcomePosition === 'signin' ? 'Hello, Welcome!' : "Welcome Back!"}</h1>
 				<p className="welcome--text">Don`t have on account?</p>
 				<div className="welcome--box-button">
-					{welcomePosition === 'signup' ? <Link to='/registration' className="welcome--button button">Registration</Link> : <Link to='/login' className="welcome--button button">Login</Link>}
+					{welcomePosition === 'signup' ?
+						<Link to='/registration' className="welcome--button button">Registration</Link> :
+						<Link to='/login' className="welcome--button button">Login</Link>}
 				</div>
 			</div>
 		</div>
