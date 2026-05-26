@@ -19,6 +19,7 @@
 .page-task--status_Incomplete span {
 	color: rgb(255, 0, 0);
 }
+
 .page-task--status_Complete span {
 	color: rgb(17, 255, 0);
 }
@@ -31,8 +32,8 @@
 }
 
 .page-task--button {
-	background-color: #6c63ff;
-	color: #fff;
+	background-color: var(--purple);
+	color: var(--white);
 	width: 90px;
 	height: 30px;
 	border-radius: 5px;

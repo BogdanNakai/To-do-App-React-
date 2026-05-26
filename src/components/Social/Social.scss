@@ -1,7 +1,7 @@
 .form--social-text {
 	font-weight: 700;
 	font-size: 20px;
-	color: #595959;
+	color: var(--grey);
 	padding-bottom: 20px;
 }
 
@@ -19,6 +19,6 @@
 	align-items: center;
 	justify-content: center;
 	padding: 12px;
-	border: 2px solid #595959;
+	border: 2px solid var(--grey);
 	border-radius: 5px;
 }

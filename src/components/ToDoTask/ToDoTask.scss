@@ -15,14 +15,14 @@
 	width: 100%;
 	border-radius: 20px;
 	padding: 15px 25px;
-	background-color: #6c63ff;
+	background-color: var(--purple);
 }
 
 .todo--item_complit {
-	background-color: #9d9d9d;
+	background-color: var(--green);
 
 	.todo--info {
-			text-decoration: line-through;
+		text-decoration: line-through;
 	}
 }
 
@@ -40,8 +40,8 @@
 	justify-content: center;
 	width: 30px;
 	height: 30px;
-	background-color: #f0f0f0;
-	border: 2px solid #ccc;
+	background-color:var(--white);
+	border: 2px solid var(--white);
 	border-radius: 4px;
 	margin-right: 10px;
 	cursor: pointer;
@@ -58,14 +58,14 @@
 }
 
 .todo--checkbox--real:checked+.todo--checkbox-fake {
-	background-color: #003f06;
-	border-color: #6c63ff;
+	background-color: var(--green);
+	border-color: var(--purple);
 }
 
 .todo--checkbox--real:checked+.todo--checkbox-fake::after {
 	content: '✓';
 	display: block;
-	color: #ffffff;
+	color: var(--white);
 	font-size: 18px;
 	text-align: center;
 	line-height: 18px;
@@ -77,12 +77,13 @@
 	font-size: 20px;
 	line-height: 100%;
 	text-transform: uppercase;
-	color: #ffffff;
+	color: var(--white);
 	transition: all 0.3s;
 
 	&:hover {
 		color: rgb(184, 184, 184)
 	}
+
 	&:active {
 		transform: scale(0.99);
 	}
@@ -103,8 +104,9 @@
 		width: 100%;
 		height: 100%;
 	}
+
 	&:hover img {
-		transform: scale(1.2);		
+		transform: scale(1.2);
 	}
 }
 
@@ -117,5 +119,5 @@
 	font-size: 20px;
 	line-height: 100%;
 	text-transform: capitalize;
-	color: #252525;
+	color: var(--black);
 }

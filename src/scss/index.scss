@@ -3,7 +3,6 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand:regular,700&display=swap");
 
 
-
 body {
 	font-family: "Quicksand", sans-serif;
 	font-size: 24px;
@@ -18,9 +17,19 @@ body {
 	padding: 0 15px;
 	margin: 0 auto;
 
-	@media (max-width: 768px){
-		max-width: none;		  
+	@media (max-width: 768px) {
+		max-width: none;
 	}
+}
+
+:root {
+	--black: #252525;
+	--purple: #6c63ff;
+	--white: #f7f7f7;
+	--green: #003f06;
+	--grey: #595959;
+	--milk: #c3c1e5;
+	--red: #f92020;
 }
 
 .wrapper {
@@ -36,6 +45,4 @@ body {
 	font-size: 26px;
 }
 
-.focus {
-
-}
+.focus {}

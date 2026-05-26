@@ -14,7 +14,7 @@
 
 .todo--seacrh {
 	display: block;
-	border: 1px solid #6c63ff;
+	border: 1px solid var(--purple);
 	border-radius: 5px;
 	padding: 8px 16px;
 	width: 100%;
@@ -23,7 +23,7 @@
 		font-weight: 500;
 		font-size: 16px;
 		line-height: 100%;
-		color: #c3c1e5;
+		color: var(--milk);
 	}
 
 }

@@ -3,6 +3,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
 	&.active {
 		&::after {
 			content: '';
@@ -12,19 +13,23 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background-color: #00000052;
+			background-color: var(--black);
 		}
 	}
 }
 
 .todo--container {}
 
-.todo--body {}
+.todo--body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
 .todo--title {
 	font-weight: 700;
 	font-size: 30px;
-	color: #252525;
+	color: var(--black);
 	text-align: center;
 	padding-bottom: 18px;
 }
