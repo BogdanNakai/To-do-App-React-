@@ -1,9 +1,12 @@
 import './SelectTypeTask.scss'
 import arrow from '../../assets/icon_arow.svg'
-import useSelect from '../../hooks/useSelect';
+import { useContext } from 'react';
+import { TasksContext } from '../../context/TasksContext';
 
 
-const SelectTypeTask = ({ select }) => {
+const SelectTypeTask = () => {
+
+	const { select } = useContext(TasksContext)
 
 	const {
 		currentSelect,

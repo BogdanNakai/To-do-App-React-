@@ -1,16 +1,28 @@
 import './PopapAddTask.scss'
+import { useContext } from 'react';
+import { TasksContext } from '../../context/TasksContext';
 
-const PopapAddTask = ({ active, setactivePopup, newTaskTitle, setNewTaskTitle, addTask, isRenameMode, isRenameModeTask }) => {
+const PopapAddTask = () => {
+
+	const {
+		activePopup,
+		setactivePopup,
+		newTaskTitle,
+		setNewTaskTitle,
+		addTask,
+		isRenameMode,
+		isRenameModeTask,
+	} = useContext(TasksContext);
+
 
 	window.addEventListener('keydown', (e) => {
-		if (e.key === 'Enter' && active === 'active' ) { 
+		if (e.key === 'Enter' && active === 'active') {
 			addTask()
 		}
 	});
 
-
 	return (
-		<div className={`todo--popapAddTask popapAddTask ${active}`}>
+		<div className={`todo--popapAddTask popapAddTask ${activePopup}`}>
 			<h3 className="popapAddTask--title">New Note</h3>
 			<div className="popapAddTask--input-addTask">
 				<input placeholder="Input your note..." value={newTaskTitle} onChange={(e) => { setNewTaskTitle(e.target.value) }} type="text" name="addTask" id="addTask" className="popapAddTask--input" />

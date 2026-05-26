@@ -3,9 +3,21 @@ import { Link } from "react-router-dom";
 import edit from '../../assets/icon_edit.svg'
 import remove from '../../assets/icon_remove.svg'
 import previewTask from '../../assets/preview_tasks.svg'
+import { useContext } from 'react';
+import { TasksContext } from '../../context/TasksContext';
 
+const ItemListTask = () => {
+	const {
+		userTasks,
+		filteredTasks,
+		filteredByDone,
+		toggleCheckBox,
+		deleteTask,
+		getEditControls,
+	} = useContext(TasksContext)
 
-const ItemListTask = ({ arrTasks, toggleCheckBox, deleteTask, getEditControls }) => {
+	const arrTasks = filteredTasks ?? filteredByDone ?? userTasks;
+
 	return (
 		<>
 			{arrTasks?.length ? (arrTasks)?.map((item) => {
