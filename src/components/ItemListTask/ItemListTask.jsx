@@ -8,7 +8,7 @@ import { TasksContext } from '../../context/TasksContext';
 
 const ItemListTask = () => {
 	const {
-		userTasks,
+		usersTasks,
 		filteredTasks,
 		filteredByDone,
 		toggleCheckBox,
@@ -16,7 +16,7 @@ const ItemListTask = () => {
 		getEditControls,
 	} = useContext(TasksContext)
 
-	const arrTasks = filteredTasks ?? filteredByDone ?? userTasks;
+	const arrTasks = filteredTasks ?? filteredByDone ?? usersTasks;
 
 	return (
 		<>
