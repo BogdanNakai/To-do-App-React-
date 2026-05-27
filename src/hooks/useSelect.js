@@ -4,23 +4,25 @@ const useSelect = () => {
 
 	const [filterIsDone, setFilterIsDone] = useState('')
 	const [currentSelect, setCurrentSelect] = useState('All')
-	const [isActive, setIsActive] = useState('')
+	const [isActive, setIsActive] = useState(false)
 	const boxRef = useRef(null);
 
 	useEffect(() => {
 		const handleClickOutside = (event) => {
-			if (boxRef.current && !boxRef.current.contains(event.target)) {
-				setIsActive('')
-			} else {
-				setIsActive('is-active')
+			if (boxRef.current?.contains(event.target)) {
+				setIsActive(isActive => !isActive)
 			}
+
+			if (!boxRef.current.contains(event.target) && isActive) { 
+				setIsActive(false)
+			} 
 		};
 		document.addEventListener('mousedown', handleClickOutside);
 
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, []);
+	}, [isActive]);
 
 	const handleSelectItem = (e) => {
 		const value = e.currentTarget.getAttribute('data-value');
