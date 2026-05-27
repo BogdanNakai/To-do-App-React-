@@ -10,6 +10,7 @@ body {
 	color: #181821;
 	min-width: 320px;
 	overflow-x: hidden;
+	background-color: var(--bg);
 }
 
 [class*="--container"] {
@@ -26,6 +27,18 @@ body {
 	--black: #252525;
 	--purple: #6c63ff;
 	--white: #f7f7f7;
+	--bg: #f7f7f7;
+	--green: #003f06;
+	--grey: #595959;
+	--milk: #c3c1e5;
+	--red: #f92020;
+}
+
+[data-theme="dark"] {
+	--black: #f7f7f7;
+	--purple: #6c63ff;
+	--white: #f7f7f7;
+	--bg: #252525;
 	--green: #003f06;
 	--grey: #595959;
 	--milk: #c3c1e5;
