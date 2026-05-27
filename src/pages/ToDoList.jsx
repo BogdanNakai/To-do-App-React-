@@ -1,5 +1,3 @@
-
-
 import '../scss/todo.scss'
 
 import ButtonThems from "../components/ButtonThems/ButtonThems";
@@ -14,11 +12,9 @@ import useTasks from '../hooks/useTasks';
 
 const ToDoList = () => {
 
-	const { idUsers, activePopup } = useTasks();
+	const { currentUserId, activePopup } = useTasks();
 
-	console.log(activePopup);
-
-	if (!idUsers) {
+	if (!currentUserId) {
 		return <NotFound />;
 	}
 
@@ -31,8 +27,8 @@ const ToDoList = () => {
 					</h2>
 					<div className="todo--content">
 						<div className="todo--header">
-							<SearchTask/>
-							<SelectTypeTask/>
+							<SearchTask />
+							<SelectTypeTask />
 							<ButtonThems />
 						</div>
 					</div>
@@ -41,8 +37,7 @@ const ToDoList = () => {
 					</div>
 					<PopapAddTask />
 				</div>
-				
-				<ButtonAddTask/>
+				<ButtonAddTask />
 			</div>
 		</div>
 	)

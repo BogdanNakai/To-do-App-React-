@@ -1,19 +1,34 @@
-import { useEffect, useState } from 'react';
-import { saveUsersToStorage, getUsersFromStorage } from './storage.js'
+import { useEffect, useMemo, useState } from 'react';
+import { getUsersFromStorage, saveUsersToStorage } from './storage.js'
 
 
 const useTasks = () => {
 
+	const [users, setUsers] = useState(() => getUsersFromStorage())
+	const [currentUserId, setCurrentUserId] = useState(
+		() => localStorage.getItem('currentUserId')
+	)
 	const [activePopup, setactivePopup] = useState('');
 	const [newTaskTitle, setNewTaskTitle] = useState('');
 	const [idTaskEdit, setIdTaskEdit] = useState('')
 	const [isRenameMode, setisRenameMode] = useState(false)
-	const id = localStorage.getItem('currentUserId');
-	const [users, setUsers] = useState(() => getUsersFromStorage())
 
-	const userTasks = users.find((e) => e.id === id)?.tasks || [];
+	const usersTasks = useMemo(() => {
+		return users.find(u => u.id === currentUserId)?.tasks || []
+	}, [users, currentUserId])
 
-	const idUsers = users.find((e) => e.id === id);
+	useEffect(() => {
+		saveUsersToStorage(users)
+	}, [users])
+
+	useEffect(() => {
+		const handler = () => {
+			setCurrentUserId(localStorage.getItem('currentUserId'))
+		}
+
+		window.addEventListener('storage', handler)
+		return () => window.removeEventListener('storage', handler)
+	}, [])
 
 	const addTask = () => {
 		if (newTaskTitle.trim().length === 0) return;
@@ -25,7 +40,7 @@ const useTasks = () => {
 		};
 
 		const newUsersTask = users.map((e) => {
-			if (e.id === id) {
+			if (e.id === currentUserId) {
 				return {
 					...e,
 					tasks: [...e.tasks, newTask]
@@ -41,7 +56,7 @@ const useTasks = () => {
 
 	const deleteTask = (idTask) => {
 		const newUsersTask = users.map((e) => {
-			if (e.id === id) {
+			if (e.id === currentUserId) {
 				return {
 					...e,
 					tasks: e.tasks.filter((t) => t.id !== idTask)
@@ -54,7 +69,7 @@ const useTasks = () => {
 
 	const toggleCheckBox = (idTask) => {
 		const newUsersTasks = users.map((e) => {
-			if (e.id === id) {
+			if (e.id === currentUserId) {
 				return {
 					...e,
 					tasks: e.tasks.map((t) => {
@@ -80,7 +95,7 @@ const useTasks = () => {
 	const isRenameModeTask = () => {
 		if (idTaskEdit) {
 			const newUsersTask = users.map((e) => {
-				if (e.id === id) {
+				if (e.id === currentUserId) {
 					return {
 						...e,
 						tasks: e.tasks.map((t) => {
@@ -99,13 +114,11 @@ const useTasks = () => {
 		}
 	}
 
-	useEffect(() => {
-		saveUsersToStorage(users)
-	}, [users])
-
 	return {
-		idUsers,
-		userTasks,
+		users,
+		setUsers,
+		currentUserId,
+		usersTasks,
 		toggleCheckBox,
 		deleteTask,
 		getEditControls,
@@ -117,6 +130,7 @@ const useTasks = () => {
 		isRenameModeTask,
 		setactivePopup,
 		setNewTaskTitle,
+		setCurrentUserId
 	}
 };
 

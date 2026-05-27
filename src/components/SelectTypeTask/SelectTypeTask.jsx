@@ -6,14 +6,13 @@ import { TasksContext } from '../../context/TasksContext';
 
 const SelectTypeTask = () => {
 
-	const { select } = useContext(TasksContext)
-
 	const {
-		currentSelect,
 		isActive,
 		boxRef,
-		handleSelectItem
-	} = select;
+		handleSelectItem,
+		currentSelect
+	} = useContext(TasksContext)
+
 
 	return (
 		<>

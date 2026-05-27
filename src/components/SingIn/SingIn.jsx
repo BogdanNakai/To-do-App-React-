@@ -9,10 +9,13 @@ import './SingIn.scss'
 
 import user from '../../assets/icon_user.svg'
 import security from '../../assets/icon_security.svg'
+import { useContext } from "react";
+import { TasksContext } from "../../context/TasksContext";
 
 const SingIn = () => {
 
 	const navigate = useNavigate()
+	const { setCurrentUserId } = useContext(TasksContext)
 
 	const {
 		control,
@@ -35,6 +38,7 @@ const SingIn = () => {
 			return
 		}
 		localStorage.setItem('currentUserId', matchedUser.id)
+		setCurrentUserId(matchedUser.id)
 		navigate(`/`)
 	}
 

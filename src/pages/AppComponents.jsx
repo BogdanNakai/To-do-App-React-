@@ -11,7 +11,6 @@ const ItemTask = lazy(() => import("../components/ItemTask/ItemTask"))
 
 
 const AppComponents = () => {
-	const userId = localStorage.getItem("currentUserId");
 
 	return (
 		<Suspense fallback={<Loading />}>
