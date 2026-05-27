@@ -21,6 +21,16 @@
 	border: 1px solid var(--milk);
 }
 
+[data-theme="dark"] .form--input {
+	background: none;
+	color: var(--black);
+	border: 1px solid var(--grey);
+	&:focus {
+		outline: none;
+		border: 1px solid var(--purple);
+	}
+}
+
 .form--input-icon {
 	position: absolute;
 	right: 15px;
