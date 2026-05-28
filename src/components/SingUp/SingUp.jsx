@@ -10,9 +10,13 @@ import './SingUp.scss'
 import user from '../../assets/icon_user.svg'
 import security from '../../assets/icon_security.svg'
 import email from '../../assets/icon_email.svg'
+import { useContext } from "react";
+import { TasksContext } from "../../context/TasksContext";
 
 const SingUp = () => {
 	const navigate = useNavigate()
+
+	const { users, setUsers ,setCurrentUserId } = useContext(TasksContext)
 
 	const {
 		control,
@@ -23,8 +27,6 @@ const SingUp = () => {
 	} = useForm()
 
 	const onSubmit = (data) => {
-
-		const users = JSON.parse(localStorage.getItem('users')) || [];
 
 		const isEmailUsed = users.find(user => user.email === data.email);
 
@@ -43,10 +45,12 @@ const SingUp = () => {
 				done: false
 			}]
 		}
+
 		users.push(dataUser);
 		localStorage.setItem('currentUserId', dataUser.id)
 		localStorage.setItem(`users`, JSON.stringify(users));
-		navigate(`/`, { replace: true })
+		setCurrentUserId(dataUser.id)
+		navigate(`/`)
 		
 	}
 
