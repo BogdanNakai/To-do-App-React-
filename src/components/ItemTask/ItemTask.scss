@@ -34,10 +34,14 @@
 }
 
 .page-task--button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: auto;
 	background-color: var(--purple);
 	color: var(--white);
-	width: 90px;
-	height: 30px;
+	height: 40px;
+	min-width: 80px;
 	border-radius: 5px;
 }
 

@@ -10,21 +10,22 @@ const SelectTypeTask = () => {
 		isActive,
 		boxRef,
 		handleSelectItem,
-		currentSelect
+		currentSelect,
+		buttonRef
 	} = useContext(TasksContext)
 
 
 	return (
 		<>
 			<div ref={boxRef} className="todo--select-task">
-				<div className="select__header">
+				<div ref={buttonRef} className="select__header">
 					<span className="select__current">{currentSelect}</span>
 					<div className="select__icon"><img src={arrow} alt="Image" /></div>
 				</div>
 				<div className={`select__body ${isActive ? 'is-active': null}`}>
-					<div onClick={handleSelectItem} className="select__item" data-value="all">All</div>
-					<div onClick={handleSelectItem} className="select__item" data-value="done">Complete</div>
-					<div onClick={handleSelectItem} className="select__item" data-value="not-done">Incomplete</div>
+					<div onClick={(e) => handleSelectItem(e)} className="select__item" data-value="all">All</div>
+					<div onClick={(e) => handleSelectItem(e)} className="select__item" data-value="done">Complete</div>
+					<div onClick={(e) => handleSelectItem(e)} className="select__item" data-value="not-done">Incomplete</div>
 				</div>
 			</div>
 		</>

@@ -1,11 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 
-const ProtectedRoute = () => { 
+const ProtectedRoute = () => {
 
-	const userId = localStorage.getItem('currentUserId');
+	const userId = localStorage.getItem('currentUser');
 
-	if (!userId) { 
+	if (!userId) {
 		return <Navigate to="/login" replace />;
 	}
 

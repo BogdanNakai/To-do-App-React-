@@ -8,6 +8,6 @@ export const getUsersFromStorage = () => {
 	}
 };
 
-export const saveUsersToStorage = (users) => {
-	localStorage.setItem(USERS_KEY, JSON.stringify(users));
+export const saveUsersToStorage = (users, name = USERS_KEY) => {
+	localStorage.setItem(name, JSON.stringify(users));
 };

@@ -14,14 +14,12 @@ export const TaskProvider = (props) => {
 		currentSelect,
 		isActive,
 		boxRef,
-		handleSelectItem
+		handleSelectItem,
+		buttonRef,
 	} = useSelect();
 
 	const {
-		users,
-		setUsers,
-		currentUserId,
-		usersTasks,
+		currentUser,
 		toggleCheckBox,
 		deleteTask,
 		getEditControls,
@@ -33,7 +31,6 @@ export const TaskProvider = (props) => {
 		isRenameModeTask,
 		setactivePopup,
 		setNewTaskTitle,
-		setCurrentUserId
 	} = useTasks()
 
 	const {
@@ -41,15 +38,11 @@ export const TaskProvider = (props) => {
 		setSearchQuery,
 		filteredByDone,
 		filteredTasks,
-	} = useFilter({ filterIsDone, usersTasks })
-
+	} = useFilter({ filterIsDone, currentUser })
 
 	return (
 		<TasksContext.Provider value={{
-			users,
-			setUsers,
-			currentUserId,
-			usersTasks,
+			currentUser,
 			filteredTasks,
 			filteredByDone,
 			toggleCheckBox,
@@ -68,8 +61,8 @@ export const TaskProvider = (props) => {
 			currentSelect,
 			isActive,
 			boxRef,
-			handleSelectItem,
-			setCurrentUserId
+			buttonRef,
+			handleSelectItem
 		}}>
 			{children}
 

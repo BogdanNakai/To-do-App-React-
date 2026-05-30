@@ -21,7 +21,7 @@ const ItemTask = () => {
 						Status: <span>{status}</span>
 					</p>
 					<div className="page-task--box-button-action">
-						<button onClick={replaceStatus} className="page-task--button page-task--button-status">Status</button>
+						<button onClick={replaceStatus} className="page-task--button page-task--button-status">Chenge Status</button>
 						<button onClick={handleExit} className="page-task--button page-task--button-exit">Exit</button>
 					</div>
 				</div>

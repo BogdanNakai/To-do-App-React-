@@ -10,11 +10,12 @@ import NotFound from './NotFound';
 import useTasks from '../hooks/useTasks';
 
 
+
 const ToDoList = () => {
 
-	const { currentUserId, activePopup } = useTasks();
+	const { currentUser, activePopup } = useTasks();
 
-	if (!currentUserId) {
+	if (!currentUser) {
 		return <NotFound />;
 	}
 

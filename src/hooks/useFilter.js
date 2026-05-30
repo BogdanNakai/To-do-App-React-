@@ -1,14 +1,21 @@
 import { useMemo, useState } from 'react';
 
-const useFilter = ({ filterIsDone, usersTasks }) => {
+const useFilter = ({ filterIsDone, currentUser }) => {
 
 	const [searchQuery, setSearchQuery] = useState('')
 
-	const filteredByDone = filterIsDone === 'done' ? usersTasks.filter(({ done }) => done) : filterIsDone === 'not-done' ? usersTasks.filter(({ done }) => !done) : usersTasks;;
+	const filteredByDone = filterIsDone === 'done'
+		? currentUser.tasks?.filter(({ done }) => done)
+		: filterIsDone === 'not-done'
+			? currentUser.tasks?.filter(({ done }) => !done)
+			: currentUser?.tasks;
+
 	const filteredTasks = useMemo(() => {
 		const clearsearchQuery = searchQuery.trim().toLocaleLowerCase();
 
-		return clearsearchQuery.length > 0 ? filteredByDone.filter(({ title }) => title.toLocaleLowerCase().includes(clearsearchQuery)) : filteredByDone;
+		return clearsearchQuery.length > 0
+			? filteredByDone.filter(({ title }) => title.toLocaleLowerCase().includes(clearsearchQuery))
+			: filteredByDone;
 	}, [searchQuery, filteredByDone])
 
 

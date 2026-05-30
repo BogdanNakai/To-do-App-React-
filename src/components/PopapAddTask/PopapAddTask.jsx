@@ -9,9 +9,9 @@ const PopapAddTask = () => {
 		setactivePopup,
 		newTaskTitle,
 		setNewTaskTitle,
-		addTask,
 		isRenameMode,
 		isRenameModeTask,
+		addTask
 	} = useContext(TasksContext);
 
 

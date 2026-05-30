@@ -6,14 +6,15 @@ const useSelect = () => {
 	const [currentSelect, setCurrentSelect] = useState('All')
 	const [isActive, setIsActive] = useState(false)
 	const boxRef = useRef(null);
+	const buttonRef = useRef(null);
 
 	useEffect(() => {
 		const handleClickOutside = (event) => {
-			if (boxRef.current?.contains(event.target)) {
+			if (buttonRef.current?.contains(event.target)) {
 				setIsActive(isActive => !isActive)
 			}
-
-			if (!boxRef.current.contains(event.target) && isActive) { 
+ 
+			if (!boxRef.current?.contains(event.target) && isActive) { 
 				setIsActive(false)
 			} 
 		};
@@ -36,7 +37,8 @@ const useSelect = () => {
 		isActive,
 		boxRef,
 		filterIsDone,
-		handleSelectItem
+		handleSelectItem,
+		buttonRef
 	}
 }
 

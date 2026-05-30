@@ -1,5 +1,4 @@
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 
 import ButtonForm from "../ButtonForm/ButtonForm";
 import Social from "../Social/Social";
@@ -10,23 +9,28 @@ import './SingUp.scss'
 import user from '../../assets/icon_user.svg'
 import security from '../../assets/icon_security.svg'
 import email from '../../assets/icon_email.svg'
-import { useContext } from "react";
-import { TasksContext } from "../../context/TasksContext";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addUsers, chengeCurrentUser, saveUserList } from "../../features/tasks/tasksSlice";
+
 
 const SingUp = () => {
-	const navigate = useNavigate()
-
-	const { users, setUsers ,setCurrentUserId } = useContext(TasksContext)
 
 	const {
-		control,
+
 		handleSubmit,
-		message,
 		setError,
-		formState: { errors },
+		control,
+		formState: { errors }
 	} = useForm()
 
-	const onSubmit = (data) => {
+
+	const navigate = useNavigate()
+
+	const users = useSelector(state => state.users.users)
+	const dispatch = useDispatch()
+
+	const onSubmitSingUp = (data) => {
 
 		const isEmailUsed = users.find(user => user.email === data.email);
 
@@ -45,19 +49,17 @@ const SingUp = () => {
 				done: false
 			}]
 		}
-
-		users.push(dataUser);
-		localStorage.setItem('currentUserId', dataUser.id)
-		localStorage.setItem(`users`, JSON.stringify(users));
-		setCurrentUserId(dataUser.id)
+		dispatch(addUsers(dataUser))
+		dispatch(chengeCurrentUser(dataUser))
+		dispatch(saveUserList(dataUser)) 
 		navigate(`/`)
-		
 	}
+
 
 	return (
 		<>
 			<div className="registration--form form">
-				<form noValidate required action="" onSubmit={handleSubmit(onSubmit)} className="form--signin">
+				<form noValidate required action="" onSubmit={handleSubmit(onSubmitSingUp)} className="form--signin">
 					<h2 className="form--title">Registration</h2>
 					<div className="form--info-input">
 						<Controller

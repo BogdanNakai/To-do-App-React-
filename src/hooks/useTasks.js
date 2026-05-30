@@ -1,34 +1,24 @@
 import { useEffect, useMemo, useState } from 'react';
-import { getUsersFromStorage, saveUsersToStorage } from './storage.js'
+import { saveUsersToStorage } from './storage.js'
+import { useDispatch, useSelector } from 'react-redux';
+import { addTaskUser, chengeCurrentUser, deleteTaskUser, isRenameTaskUser, saveUserList, toggleCheckUser } from '../features/tasks/tasksSlice.js';
 
 
 const useTasks = () => {
 
-	const [users, setUsers] = useState(() => getUsersFromStorage())
-	const [currentUserId, setCurrentUserId] = useState(
-		() => localStorage.getItem('currentUserId')
-	)
+	const dispatch = useDispatch();
+	const users = useSelector(state => state.users.users);
+
+	const currentUser = useSelector(state => state.users.currentUser);
+
 	const [activePopup, setactivePopup] = useState('');
 	const [newTaskTitle, setNewTaskTitle] = useState('');
 	const [idTaskEdit, setIdTaskEdit] = useState('')
 	const [isRenameMode, setisRenameMode] = useState(false)
 
-	const usersTasks = useMemo(() => {
-		return users.find(u => u.id === currentUserId)?.tasks || []
-	}, [users, currentUserId])
-
 	useEffect(() => {
 		saveUsersToStorage(users)
 	}, [users])
-
-	useEffect(() => {
-		const handler = () => {
-			setCurrentUserId(localStorage.getItem('currentUserId'))
-		}
-
-		window.addEventListener('storage', handler)
-		return () => window.removeEventListener('storage', handler)
-	}, [])
 
 	const addTask = () => {
 		if (newTaskTitle.trim().length === 0) return;
@@ -39,50 +29,21 @@ const useTasks = () => {
 			done: false
 		};
 
-		const newUsersTask = users.map((e) => {
-			if (e.id === currentUserId) {
-				return {
-					...e,
-					tasks: [...e.tasks, newTask]
-				};
-			}
-			return e;
-		});
+		dispatch(addTaskUser(newTask))
+		dispatch(saveUserList())
 
-		setUsers(newUsersTask);
 		setNewTaskTitle('');
 		setactivePopup('');
 	};
 
 	const deleteTask = (idTask) => {
-		const newUsersTask = users.map((e) => {
-			if (e.id === currentUserId) {
-				return {
-					...e,
-					tasks: e.tasks.filter((t) => t.id !== idTask)
-				};
-			}
-			return e
-		})
-		setUsers(newUsersTask)
+		dispatch(deleteTaskUser(idTask))
+		dispatch(saveUserList())
 	}
 
 	const toggleCheckBox = (idTask) => {
-		const newUsersTasks = users.map((e) => {
-			if (e.id === currentUserId) {
-				return {
-					...e,
-					tasks: e.tasks.map((t) => {
-						if (t.id === idTask) {
-							return { ...t, done: !t.done }
-						}
-						return t
-					})
-				};
-			}
-			return e
-		})
-		setUsers(newUsersTasks)
+		dispatch(toggleCheckUser(idTask))
+		dispatch(saveUserList())
 	}
 
 	const getEditControls = (titleTask, idTask) => {
@@ -93,32 +54,16 @@ const useTasks = () => {
 	}
 
 	const isRenameModeTask = () => {
-		if (idTaskEdit) {
-			const newUsersTask = users.map((e) => {
-				if (e.id === currentUserId) {
-					return {
-						...e,
-						tasks: e.tasks.map((t) => {
-							if (t.id === idTaskEdit) {
-								return { ...t, title: newTaskTitle }
-							}
-							return t
-						})
-					};
-				}
-				return e
-			})
-			setUsers(newUsersTask)
-			setisRenameMode(false)
-			setactivePopup('')
-		}
+		dispatch(isRenameTaskUser({ idTaskEdit, newTaskTitle }))
+		dispatch(saveUserList())
+		
+
+		setisRenameMode(false)
+		setactivePopup('')
 	}
 
 	return {
-		users,
-		setUsers,
-		currentUserId,
-		usersTasks,
+		currentUser,
 		toggleCheckBox,
 		deleteTask,
 		getEditControls,
@@ -130,7 +75,6 @@ const useTasks = () => {
 		isRenameModeTask,
 		setactivePopup,
 		setNewTaskTitle,
-		setCurrentUserId
 	}
 };
 

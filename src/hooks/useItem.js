@@ -1,42 +1,25 @@
-import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { saveUsersToStorage } from "./storage";
-import { TasksContext } from "../context/TasksContext";
+import { useDispatch, useSelector } from "react-redux";
+import { saveUserList, toggleCheckUser } from "../features/tasks/tasksSlice";
 
 const useItem = () => {
 
-	const { users, setUsers, currentUserId } = useContext(TasksContext);
+	const dispatch = useDispatch()
+	const currentUser = useSelector(state => state.users.currentUser)
 
 	const navigate = useNavigate();
 	const { taskId } = useParams();
 
-	const task = users.find((e) => e.id === currentUserId)?.tasks?.find((e) => e.id === taskId)
+	const task = currentUser.tasks?.find((e) => e.id === taskId)
 	const status = task?.done ? "Complete" : "Incomplete";
-
-	useEffect(() => {
-		saveUsersToStorage(users)
-	}, [users])
 
 	const handleExit = () => {
 		navigate(`/`, { replace: true })
 	}
 
 	const replaceStatus = () => {
-		setUsers((prevUsers) => prevUsers.map((user) => {
-			if (user.id === currentUserId) {
-				return {
-					...user,
-					tasks: user.tasks.map((t) => {
-						if (t.id === taskId) {
-							return { ...t, done: !t.done }
-						}
-						return t
-					})
-
-				}
-			}
-			return user
-		}))
+		dispatch(toggleCheckUser(taskId))
+		dispatch(saveUserList())
 	}
 
 	return {
