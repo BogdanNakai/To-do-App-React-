@@ -1,5 +1,5 @@
 import { createSlice} from '@reduxjs/toolkit'
-import { getUsersFromStorage, saveUsersToStorage } from '../../hooks/storage'
+import { getUsersFromStorage} from '../../hooks/storage'
 
 const currentUserFromStorage =
 	JSON.parse(localStorage.getItem("currentUser"))
@@ -27,9 +27,6 @@ const tasksSlice = createSlice({
 				}
 				return user
 			})
-
-			saveUsersToStorage(state.users)
-			saveUsersToStorage(state.currentUser, 'currentUser')
 		},
 		addTaskUser: (state, action) => {
 			state.currentUser.tasks.push(action.payload);

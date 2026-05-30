@@ -22,7 +22,7 @@ const SelectTypeTask = () => {
 					<span className="select__current">{currentSelect}</span>
 					<div className="select__icon"><img src={arrow} alt="Image" /></div>
 				</div>
-				<div className={`select__body ${isActive ? 'is-active': null}`}>
+				<div className={`select__body ${isActive ? 'is-active': ''}`}>
 					<div onClick={(e) => handleSelectItem(e)} className="select__item" data-value="all">All</div>
 					<div onClick={(e) => handleSelectItem(e)} className="select__item" data-value="done">Complete</div>
 					<div onClick={(e) => handleSelectItem(e)} className="select__item" data-value="not-done">Incomplete</div>

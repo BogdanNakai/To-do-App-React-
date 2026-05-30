@@ -13,10 +13,10 @@ const useSelect = () => {
 			if (buttonRef.current?.contains(event.target)) {
 				setIsActive(isActive => !isActive)
 			}
- 
-			if (!boxRef.current?.contains(event.target) && isActive) { 
+
+			if (!boxRef.current?.contains(event.target) && isActive) {
 				setIsActive(false)
-			} 
+			}
 		};
 		document.addEventListener('mousedown', handleClickOutside);
 

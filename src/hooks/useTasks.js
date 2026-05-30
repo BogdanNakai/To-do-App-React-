@@ -1,26 +1,21 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { saveUsersToStorage } from './storage.js'
 import { useDispatch, useSelector } from 'react-redux';
-import { addTaskUser, chengeCurrentUser, deleteTaskUser, isRenameTaskUser, saveUserList, toggleCheckUser } from '../features/tasks/tasksSlice.js';
+import { addTaskUser, deleteTaskUser, saveUserList, toggleCheckUser } from '../features/tasks/tasksSlice.js';
 
 
 const useTasks = () => {
 
 	const dispatch = useDispatch();
 	const users = useSelector(state => state.users.users);
-
 	const currentUser = useSelector(state => state.users.currentUser);
-
-	const [activePopup, setactivePopup] = useState('');
-	const [newTaskTitle, setNewTaskTitle] = useState('');
-	const [idTaskEdit, setIdTaskEdit] = useState('')
-	const [isRenameMode, setisRenameMode] = useState(false)
 
 	useEffect(() => {
 		saveUsersToStorage(users)
-	}, [users])
+		saveUsersToStorage(currentUser, 'currentUser')
+	}, [users, currentUser])
 
-	const addTask = () => {
+	const addTask = (newTaskTitle) => {
 		if (newTaskTitle.trim().length === 0) return;
 
 		const newTask = {
@@ -30,10 +25,7 @@ const useTasks = () => {
 		};
 
 		dispatch(addTaskUser(newTask))
-		dispatch(saveUserList())
-
-		setNewTaskTitle('');
-		setactivePopup('');
+		dispatch(saveUserList())		
 	};
 
 	const deleteTask = (idTask) => {
@@ -46,35 +38,14 @@ const useTasks = () => {
 		dispatch(saveUserList())
 	}
 
-	const getEditControls = (titleTask, idTask) => {
-		setactivePopup('active')
-		setisRenameMode(true)
-		setNewTaskTitle(titleTask)
-		setIdTaskEdit(idTask)
-	}
-
-	const isRenameModeTask = () => {
-		dispatch(isRenameTaskUser({ idTaskEdit, newTaskTitle }))
-		dispatch(saveUserList())
-		
-
-		setisRenameMode(false)
-		setactivePopup('')
-	}
+	const actionsUsers = useMemo(() => ({
+		deleteTask,
+		addTask,
+		toggleCheckBox,
+	}), [deleteTask, addTask, toggleCheckBox]);
 
 	return {
-		currentUser,
-		toggleCheckBox,
-		deleteTask,
-		getEditControls,
-		activePopup,
-		newTaskTitle,
-		addTask,
-		isRenameMode,
-		setisRenameMode,
-		isRenameModeTask,
-		setactivePopup,
-		setNewTaskTitle,
+		actionsUsers,
 	}
 };
 

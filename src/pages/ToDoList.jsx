@@ -7,20 +7,24 @@ import ToDoTask from '../components/ToDoTask/ToDoTask';
 import ButtonAddTask from '../components/ButtonAddTask/ButtonAddTask';;
 import PopapAddTask from '../components/PopapAddTask/PopapAddTask';
 import NotFound from './NotFound';
-import useTasks from '../hooks/useTasks';
-
+import { useSelector } from 'react-redux';
+import { useContext } from 'react';
+import { PopapContext } from '../context/PopapContext';
 
 
 const ToDoList = () => {
 
-	const { currentUser, activePopup } = useTasks();
+	const { actionPopap } = useContext(PopapContext);
+	const { activePopup } = actionPopap
+
+	const currentUser = useSelector(state => state.users.currentUser);
 
 	if (!currentUser) {
 		return <NotFound />;
 	}
 
 	return (
-		<div className={`todo ${activePopup}`}>
+		<div className={`todo ${activePopup ? 'active' : ''}`}>
 			<div className="todo--container">
 				<div className="todo--body">
 					<h2 className="todo--title">

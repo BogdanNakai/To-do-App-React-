@@ -1,16 +1,16 @@
 import { useContext } from 'react';
 import './ButtonAddTask.scss'
-import { TasksContext } from '../../context/TasksContext';
+import { PopapContext } from '../../context/PopapContext';
 
 const ButtonAddTask = () => {
 
-	const { setactivePopup, setNewTaskTitle } = useContext(TasksContext)
+	const { setActivePopup, setNewTaskTitle } = useContext(PopapContext)
 
 	return (
 		<div className="todo--addTask">
 			<button onClick={() => {
 				setNewTaskTitle('');
-				setactivePopup('active')
+				setActivePopup(true)
 			}} className="todo--button-addTask">
 			</button>
 		</div>

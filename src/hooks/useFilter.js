@@ -1,6 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
+import { TasksContext } from '../context/TasksContext';
+import { useSelector } from 'react-redux';
 
-const useFilter = ({ filterIsDone, currentUser }) => {
+const useFilter = () => {
+
+	const currentUser = useSelector(state => state.users.currentUser);
+	const { filterIsDone } = useContext(TasksContext)
 
 	const [searchQuery, setSearchQuery] = useState('')
 

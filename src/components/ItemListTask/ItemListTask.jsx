@@ -5,20 +5,37 @@ import remove from '../../assets/icon_remove.svg'
 import previewTask from '../../assets/preview_tasks.svg'
 import { useContext } from 'react';
 import { TasksContext } from '../../context/TasksContext';
+import { FilterContext } from "../../context/FilterContext";
+import { useSelector } from "react-redux";
+import { PopapContext } from "../../context/PopapContext";
 
 const ItemListTask = () => {
+
+	const currentUser = useSelector(state => state.users.currentUser);
+
 	const {
-		currentUser,
-		filteredTasks,
-		filteredByDone,
-		toggleCheckBox,
-		deleteTask,
-		getEditControls,
+		actionsUsers
 	} = useContext(TasksContext)
 
+	const {
+		actionPopap
+	} = useContext(PopapContext)
+
+	const {
+		toggleCheckBox,
+		deleteTask,
+	} = actionsUsers;
+
+	const {
+		getEditControls
+	} = actionPopap;
+
+	const {
+		filteredTasks,
+		filteredByDone
+	} = useContext(FilterContext)
+
 	const arrTasks = filteredTasks ?? filteredByDone ?? currentUser.tasks;
-
-
 
 	return (
 		<>
